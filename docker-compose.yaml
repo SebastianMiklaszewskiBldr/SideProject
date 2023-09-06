@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  warehouse_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api.warehouse
+      args:
+        - IMAGE_TAG=8.2-fpm-alpine3.17
+    container_name: shop_api_warehouse
+    volumes:
+      - ./api/warehouse:/var/www/html
+
