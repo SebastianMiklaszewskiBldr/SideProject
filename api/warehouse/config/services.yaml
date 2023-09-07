@@ -4,9 +4,16 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        public: true
 
     App\:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
 
+when@test:
+    services:
+        _defaults:
+            autowire: true
+            autoconfigure: true
+            public: true
