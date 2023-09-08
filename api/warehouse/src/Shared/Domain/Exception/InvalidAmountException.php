@@ -11,7 +11,8 @@ final class InvalidAmountException extends Exception
         return new self(
             sprintf(
                 'Invalid amount. Value has to be equals or greater than 0. Provided invalid value: %d',
-                $invalidValue)
+                $invalidValue
+            )
         );
     }
 }

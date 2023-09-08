@@ -6,7 +6,6 @@ use App\Shared\Domain\Exception\InvalidAmountException;
 
 final readonly class Amount
 {
-
     /**
      * @throws InvalidAmountException
      */
@@ -20,7 +19,7 @@ final readonly class Amount
      */
     private function assert(): void
     {
-        if(0 < $this->amount) {
+        if (0 < $this->amount) {
             throw InvalidAmountException::becauseAmountHasToBeEqualsOrGreaterThanZero($this->amount);
         }
     }

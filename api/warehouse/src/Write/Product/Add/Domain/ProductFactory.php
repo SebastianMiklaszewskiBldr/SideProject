@@ -15,8 +15,7 @@ final readonly class ProductFactory
         ProductName $productName,
         ProductCategory $productCategory,
         Amount $amount,
-    ): Product
-    {
+    ): Product {
         return new Product($productId, $productName, $productCategory, $amount);
     }
 }

@@ -14,7 +14,6 @@ final readonly class AddProductRequest
         public ProductName $productName,
         public ProductCategory $productCategory,
         public Amount $amount,
-    )
-    {
+    ) {
     }
 }

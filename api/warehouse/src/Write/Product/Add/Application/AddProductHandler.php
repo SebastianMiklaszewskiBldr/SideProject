@@ -14,8 +14,7 @@ final readonly class AddProductHandler
         private StockRepositoryInterface $stockRepository,
         private ProductFactory $productFactory,
         private ProductValidator $productValidator,
-    )
-    {
+    ) {
     }
 
     /**

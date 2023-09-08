@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace App\Tests\Write\Product\Shared\Application\Validator;
 
@@ -48,5 +50,4 @@ final class ProductValidatorTest extends UnitTestCase
 
         $this->productValidationRepositoryMock = $this->createMock(ProductValidationRepositoryInterface::class);
     }
-
 }

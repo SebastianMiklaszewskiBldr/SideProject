@@ -43,9 +43,8 @@ final class Stock
         Amount $amount,
         ProductValidator $productValidator,
         ProductFactory $productFactory,
-    ): void
-    {
-        if(false === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
+    ): void {
+        if (false === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
             throw CannotAddProductToStockException::becauseStockAlreadyHasProduct($this->getId(), $productName);
         }
 

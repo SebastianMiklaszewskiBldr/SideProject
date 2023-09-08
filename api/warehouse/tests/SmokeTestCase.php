@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpFieldAssignmentTypeMismatchInspection */
+<?php
+
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 
 namespace App\Tests;
 

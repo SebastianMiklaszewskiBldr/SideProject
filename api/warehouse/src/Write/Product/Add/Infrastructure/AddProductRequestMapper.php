@@ -33,7 +33,7 @@ final readonly class AddProductRequestMapper
                 new ProductCategory($productCategory),
                 new Amount($amount)
             );
-        } catch(InvalidAmountException $e) {
+        } catch (InvalidAmountException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
     }
@@ -43,8 +43,7 @@ final readonly class AddProductRequestMapper
         float|bool|int|string|null $productName,
         float|bool|int|string|null $productCategory,
         float|bool|int|string|null $amount,
-    ): void
-    {
+    ): void {
         $this->assertProductId($productId);
         $this->assertProductName($productName);
         $this->assertProductCategory($productCategory);
@@ -53,44 +52,44 @@ final readonly class AddProductRequestMapper
 
     private function assertProductId(float|bool|int|string|null $productId): void
     {
-        if(false === is_string($productId)) {
+        if (false === is_string($productId)) {
             throw new BadRequestHttpException('Request requires "productId" to be a string.');
         }
 
-        if(0 === strlen($productId)) {
+        if (0 === strlen($productId)) {
             throw new BadRequestHttpException('Request requires "productId" to be a non-empty string.');
         }
 
-        if(false === $this->uuidValidator->validate($productId)) {
+        if (false === $this->uuidValidator->validate($productId)) {
             throw new BadRequestHttpException('Request parameter "productId" has to be valid UUID v4.');
         }
     }
 
     private function assertProductName(float|bool|int|string|null $productName): void
     {
-        if(false === is_string($productName)) {
+        if (false === is_string($productName)) {
             throw new BadRequestHttpException('Request requires "productName" to be a string.');
         }
 
-        if(0 === strlen($productName)) {
+        if (0 === strlen($productName)) {
             throw new BadRequestHttpException('Request requires "productName" to be a non-empty string.');
         }
     }
 
     private function assertProductCategory(float|bool|int|string|null $productCategory): void
     {
-        if(false === is_string($productCategory)) {
+        if (false === is_string($productCategory)) {
             throw new BadRequestHttpException('Request requires "category" to be a string.');
         }
 
-        if(0 === strlen($productCategory)) {
+        if (0 === strlen($productCategory)) {
             throw new BadRequestHttpException('Request requires "category" to be a non-empty string.');
         }
     }
 
     private function assertAmount(float|bool|int|string|null $amount): void
     {
-        if(false === is_string($amount)) {
+        if (false === is_string($amount)) {
             throw new BadRequestHttpException('Request requires "amount" to be a int.');
         }
     }

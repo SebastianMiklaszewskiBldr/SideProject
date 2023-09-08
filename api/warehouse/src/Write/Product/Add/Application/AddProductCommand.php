@@ -11,12 +11,11 @@ use App\Shared\Domain\ValueObject\StockId;
 final readonly class AddProductCommand
 {
     public function __construct(
-        public StockId         $stockId,
-        public ProductId       $productId,
-        public ProductName     $productName,
+        public StockId $stockId,
+        public ProductId $productId,
+        public ProductName $productName,
         public ProductCategory $productCategory,
-        public Amount          $amount,
-    )
-    {
+        public Amount $amount,
+    ) {
     }
 }

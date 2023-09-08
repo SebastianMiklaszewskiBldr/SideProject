@@ -17,8 +17,7 @@ final class AddProductController extends AbstractController
     public function __construct(
         private readonly AddProductRequestMapper $requestMapper,
         private readonly AddProductHandler $handler,
-    )
-    {
+    ) {
     }
 
     public function add(string $stockId, Request $request): JsonResponse
@@ -35,7 +34,7 @@ final class AddProductController extends AbstractController
                     $mappedRequest->amount
                 )
             );
-        } catch(CannotAddProductToStockException $e) {
+        } catch (CannotAddProductToStockException $e) {
             throw new UnprocessableEntityHttpException($e->getMessage());
         }
 

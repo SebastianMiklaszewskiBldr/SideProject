@@ -14,7 +14,7 @@ final readonly class ProductValidator
 
     public function hasStockAlreadyProduct(StockId $stockId, ProductName $productName): bool
     {
-        if(true === $this->productValidationRepository->hasStockAProductWithProvidedName($stockId, $productName)) {
+        if (true === $this->productValidationRepository->hasStockAProductWithProvidedName($stockId, $productName)) {
             return false;
         }
 
