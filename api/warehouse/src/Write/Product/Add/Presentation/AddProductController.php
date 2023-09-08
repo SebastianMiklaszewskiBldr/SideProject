@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class AddProductController extends AbstractController
 {
-    public function add(Request $request): JsonResponse
+    public function add(string $stockId, Request $request): JsonResponse
     {
-        return new JsonResponse(null,201);
+        return new JsonResponse(null, 201);
     }
 }

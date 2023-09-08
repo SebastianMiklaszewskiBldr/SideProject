@@ -5,7 +5,7 @@ namespace App\Tests\Write\Product\Add\Presentation;
 use App\Tests\SmokeTestCase;
 use App\Tests\TestHttpStatusCode;
 use App\Tests\TestUrlName;
-use App\Write\Product\Add\AddProductTestData;
+use App\Tests\Write\Product\Add\AddProductTestData;
 
 final class AddProductControllerTest extends SmokeTestCase
 {
