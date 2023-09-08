@@ -19,78 +19,67 @@ final readonly class AddProductRequestMapper
 
     public function map(Request $request): AddProductRequest
     {
-        $productId = $request->request->get('productId');
-        $productName = $request->request->get('name');
-        $productCategory = $request->request->get('category');
-        $amount = $request->request->get('amount');
-
-        $this->assertValues($productId, $productName, $productCategory, $amount);
-
-        try {
-            return new AddProductRequest(
-                new ProductId($productId),
-                new ProductName($productName),
-                new ProductCategory($productCategory),
-                new Amount($amount)
-            );
-        } catch (InvalidAmountException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
+        return new AddProductRequest(
+            $this->mapProductId($request->request->get('productId')),
+            $this->mapProductName($request->request->get('name')),
+            $this->mapProductCategory($request->request->get('category')),
+            $this->mapAmount($request->request->get('amount'))
+        );
     }
 
-    private function assertValues(
-        float|bool|int|string|null $productId,
-        float|bool|int|string|null $productName,
-        float|bool|int|string|null $productCategory,
-        float|bool|int|string|null $amount,
-    ): void {
-        $this->assertProductId($productId);
-        $this->assertProductName($productName);
-        $this->assertProductCategory($productCategory);
-        $this->assertAmount($amount);
-    }
-
-    private function assertProductId(float|bool|int|string|null $productId): void
+    private function mapProductId(float|bool|int|string|null $productId): ProductId
     {
-        if (false === is_string($productId)) {
+        if(false === is_string($productId)) {
             throw new BadRequestHttpException('Request requires "productId" to be a string.');
         }
 
-        if (0 === strlen($productId)) {
+        if(0 === strlen($productId)) {
             throw new BadRequestHttpException('Request requires "productId" to be a non-empty string.');
         }
 
-        if (false === $this->uuidValidator->validate($productId)) {
+        if(false === $this->uuidValidator->validate($productId)) {
             throw new BadRequestHttpException('Request parameter "productId" has to be valid UUID v4.');
         }
+
+        return new ProductId($productId);
     }
 
-    private function assertProductName(float|bool|int|string|null $productName): void
+    private function mapProductName(float|bool|int|string|null $productName): ProductName
     {
-        if (false === is_string($productName)) {
+        if(false === is_string($productName)) {
             throw new BadRequestHttpException('Request requires "productName" to be a string.');
         }
 
-        if (0 === strlen($productName)) {
+        if(0 === strlen($productName)) {
             throw new BadRequestHttpException('Request requires "productName" to be a non-empty string.');
         }
+
+        return new ProductName($productName);
     }
 
-    private function assertProductCategory(float|bool|int|string|null $productCategory): void
+    private function mapProductCategory(float|bool|int|string|null $productCategory): ProductCategory
     {
-        if (false === is_string($productCategory)) {
+        if(false === is_string($productCategory)) {
             throw new BadRequestHttpException('Request requires "category" to be a string.');
         }
 
-        if (0 === strlen($productCategory)) {
+        if(0 === strlen($productCategory)) {
             throw new BadRequestHttpException('Request requires "category" to be a non-empty string.');
         }
+
+        return new ProductCategory($productCategory);
     }
 
-    private function assertAmount(float|bool|int|string|null $amount): void
+    private function mapAmount(float|bool|int|string|null $amount): Amount
     {
-        if (false === is_string($amount)) {
-            throw new BadRequestHttpException('Request requires "amount" to be a int.');
+        if(false === is_numeric($amount)) {
+            throw new BadRequestHttpException('Request requires "amount" to be a number.');
+        }
+
+        try {
+            return new Amount((int) $amount);
+        } catch(InvalidAmountException $e) {
+            throw new BadRequestHttpException($e->getMessage());
         }
     }
 }

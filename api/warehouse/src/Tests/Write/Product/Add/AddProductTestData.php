@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\Amount;
 use App\Shared\Domain\ValueObject\ProductCategory;
 use App\Shared\Domain\ValueObject\ProductId;
 use App\Shared\Domain\ValueObject\ProductName;
+use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Add\Application\AddProductCommand;
 
 final readonly class AddProductTestData
@@ -48,10 +49,16 @@ final readonly class AddProductTestData
     public function getCommand(): AddProductCommand
     {
         return new AddProductCommand(
+            $this->getStockId(),
             $this->getProductId(),
             $this->getProductName(),
             $this->getCategory(),
             $this->getAmount()
         );
+    }
+
+    private function getStockId(): StockId
+    {
+        return new StockId('5221FE61-F3AF-4FF7-B173-482E299EBC37');
     }
 }

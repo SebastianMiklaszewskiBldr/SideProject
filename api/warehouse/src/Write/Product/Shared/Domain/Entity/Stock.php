@@ -15,16 +15,17 @@ use App\Write\Product\Shared\Application\Validator\ProductValidator;
 final class Stock
 {
     private readonly string $id;
-
     private string $name;
-
     /**
      * @var array<int, Product>
      */
     private array $products;
 
-    public function __construct(StockId $id, StockName $stockName)
+    public function __construct(StockId $id, StockName $name)
     {
+        $this->id = $id->uuid;
+        $this->name = $name->name;
+
         $this->products = [];
     }
 
@@ -43,8 +44,9 @@ final class Stock
         Amount $amount,
         ProductValidator $productValidator,
         ProductFactory $productFactory,
-    ): void {
-        if (false === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
+    ): void
+    {
+        if(false === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
             throw CannotAddProductToStockException::becauseStockAlreadyHasProduct($this->getId(), $productName);
         }
 
