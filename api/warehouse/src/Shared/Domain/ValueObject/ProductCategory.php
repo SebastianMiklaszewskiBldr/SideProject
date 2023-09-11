@@ -2,9 +2,15 @@
 
 namespace App\Shared\Domain\ValueObject;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final readonly class ProductCategory
 {
-    public function __construct(public string $category)
+    #[Assert\NotBlank]
+    public string $category;
+
+    public function __construct(string $category)
     {
+        $this->category = $category;
     }
 }

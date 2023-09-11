@@ -2,9 +2,15 @@
 
 namespace App\Shared\Domain\ValueObject;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final readonly class ProductName
 {
-    public function __construct(public string $name)
+    #[Assert\NotBlank]
+    public string $name;
+
+    public function __construct(string $name)
     {
+        $this->name = $name;
     }
 }

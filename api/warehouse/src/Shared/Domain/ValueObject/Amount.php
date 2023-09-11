@@ -2,25 +2,15 @@
 
 namespace App\Shared\Domain\ValueObject;
 
-use App\Shared\Domain\Exception\InvalidAmountException;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final readonly class Amount
 {
-    /**
-     * @throws InvalidAmountException
-     */
-    public function __construct(public int $amount)
-    {
-        $this->assert();
-    }
+    #[Assert\GreaterThanOrEqual(value: 0, message: 'Invalid AmountValue')]
+    public int $amount;
 
-    /**
-     * @throws InvalidAmountException
-     */
-    private function assert(): void
+    public function __construct(int $amount)
     {
-        if (0 < $this->amount) {
-            throw InvalidAmountException::becauseAmountHasToBeEqualsOrGreaterThanZero($this->amount);
-        }
+        $this->amount = $amount;
     }
 }

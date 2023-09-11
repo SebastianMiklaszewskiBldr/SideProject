@@ -10,6 +10,9 @@ services:
         exclude:
             - '../src/Kernel.php'
 
+    App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper:
+        factory: ['App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create']
+
 when@test:
     services:
         _defaults:

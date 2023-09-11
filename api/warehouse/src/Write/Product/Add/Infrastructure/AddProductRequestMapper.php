@@ -2,84 +2,41 @@
 
 namespace App\Write\Product\Add\Infrastructure;
 
-use App\Shared\Domain\Exception\InvalidAmountException;
 use App\Shared\Domain\ValueObject\Amount;
 use App\Shared\Domain\ValueObject\ProductCategory;
 use App\Shared\Domain\ValueObject\ProductId;
 use App\Shared\Domain\ValueObject\ProductName;
-use App\Write\Product\Shared\Application\Validator\UuidValidatorInterface;
+use App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 final readonly class AddProductRequestMapper
 {
-    public function __construct(private UuidValidatorInterface $uuidValidator)
+    public function __construct(private SymfonyValidatorWrapper $validator)
     {
     }
 
     public function map(Request $request): AddProductRequest
     {
-        return new AddProductRequest(
-            $this->mapProductId($request->request->get('productId')),
-            $this->mapProductName($request->request->get('name')),
-            $this->mapProductCategory($request->request->get('category')),
-            $this->mapAmount($request->request->get('amount'))
+        $request = new AddProductRequest(
+            new ProductId($request->request->get('productId')),
+            new ProductName($request->request->get('name')),
+            new ProductCategory($request->request->get('category')),
+            new Amount($request->request->get('amount'))
         );
+
+        $violations = $this->validator->validate($request);
+
+        if(0 === $violations->count()) {
+            $this->throwException($violations);
+        }
+
+        return $request;
     }
 
-    private function mapProductId(float|bool|int|string|null $productId): ProductId
+    private function throwException(ConstraintViolationListInterface $violations): void
     {
-        if(false === is_string($productId)) {
-            throw new BadRequestHttpException('Request requires "productId" to be a string.');
-        }
-
-        if(0 === strlen($productId)) {
-            throw new BadRequestHttpException('Request requires "productId" to be a non-empty string.');
-        }
-
-        if(false === $this->uuidValidator->validate($productId)) {
-            throw new BadRequestHttpException('Request parameter "productId" has to be valid UUID v4.');
-        }
-
-        return new ProductId($productId);
-    }
-
-    private function mapProductName(float|bool|int|string|null $productName): ProductName
-    {
-        if(false === is_string($productName)) {
-            throw new BadRequestHttpException('Request requires "productName" to be a string.');
-        }
-
-        if(0 === strlen($productName)) {
-            throw new BadRequestHttpException('Request requires "productName" to be a non-empty string.');
-        }
-
-        return new ProductName($productName);
-    }
-
-    private function mapProductCategory(float|bool|int|string|null $productCategory): ProductCategory
-    {
-        if(false === is_string($productCategory)) {
-            throw new BadRequestHttpException('Request requires "category" to be a string.');
-        }
-
-        if(0 === strlen($productCategory)) {
-            throw new BadRequestHttpException('Request requires "category" to be a non-empty string.');
-        }
-
-        return new ProductCategory($productCategory);
-    }
-
-    private function mapAmount(float|bool|int|string|null $amount): Amount
-    {
-        if(false === is_numeric($amount)) {
-            throw new BadRequestHttpException('Request requires "amount" to be a number.');
-        }
-
-        try {
-            return new Amount((int) $amount);
-        } catch(InvalidAmountException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
+        throw new BadRequestHttpException($violations->get(0)->getMessage());
     }
 }
