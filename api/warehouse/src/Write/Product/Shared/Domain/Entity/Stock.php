@@ -11,14 +11,23 @@ use App\Shared\Domain\ValueObject\StockName;
 use App\Write\Product\Add\Domain\CannotAddProductToStockException;
 use App\Write\Product\Add\Domain\ProductFactory;
 use App\Write\Product\Shared\Application\Validator\ProductValidator;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'stocks')]
 final class Stock
 {
+    #[ORM\Id]
+    #[ORM\Column(name: 'id', type: 'guid', nullable: false)]
     private readonly string $id;
+
+    #[ORM\Column(name: 'name', type: 'string', nullable: false)]
     private string $name;
+
     /**
      * @var array<int, Product>
      */
+    #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Product::class, cascade: ['REMOVE'], orphanRemoval: true, indexBy: 'name')]
     private array $products;
 
     public function __construct(StockId $id, StockName $name)
@@ -50,7 +59,7 @@ final class Stock
             throw CannotAddProductToStockException::becauseStockAlreadyHasProduct($this->getId(), $productName);
         }
 
-        $product = $productFactory->create($productId, $productName, $productCategory, $amount);
+        $product = $productFactory->create($productId, $productName, $productCategory, $amount, $this);
 
         $this->addProductToStock($product);
     }

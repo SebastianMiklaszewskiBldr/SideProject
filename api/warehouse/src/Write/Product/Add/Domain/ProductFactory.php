@@ -7,6 +7,7 @@ use App\Shared\Domain\ValueObject\ProductCategory;
 use App\Shared\Domain\ValueObject\ProductId;
 use App\Shared\Domain\ValueObject\ProductName;
 use App\Write\Product\Shared\Domain\Entity\Product;
+use App\Write\Product\Shared\Domain\Entity\Stock;
 
 final readonly class ProductFactory
 {
@@ -15,7 +16,9 @@ final readonly class ProductFactory
         ProductName $productName,
         ProductCategory $productCategory,
         Amount $amount,
-    ): Product {
-        return new Product($productId, $productName, $productCategory, $amount);
+        Stock $stock,
+    ): Product
+    {
+        return new Product($productId, $productName, $productCategory, $amount, $stock);
     }
 }
