@@ -10,3 +10,18 @@ services:
     volumes:
       - ./api/warehouse:/var/www/html
 
+  warehouse_db_write:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile.db.warehouse.write
+      args:
+        - IMAGE_TAG=15.4-alpine3.18
+    container_name: shop_db_warehouse_write
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${WAREHOUSE_DB_USER}
+      - POSTGRES_PASSWORD=${WAREHOUSE_DB_PASSWORD}
+      - POSTGRES_DB=${WAREHOUSE_DB_NAME}
