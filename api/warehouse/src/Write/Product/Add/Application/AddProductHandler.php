@@ -4,7 +4,6 @@ namespace App\Write\Product\Add\Application;
 
 use App\Write\Product\Add\Domain\CannotAddProductToStockException;
 use App\Write\Product\Add\Domain\ProductFactory;
-use App\Write\Product\Add\Domain\StockItemFactory;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
 use App\Write\Product\Shared\Application\Validator\ProductValidator;
 
