@@ -72,6 +72,6 @@ final class Stock
 
     private function addProductToStock(Product $product): void
     {
-        $this->products[] = $product;
+        $this->products->add($product);
     }
 }

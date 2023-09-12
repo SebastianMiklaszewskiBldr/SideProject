@@ -51,11 +51,6 @@ parameters:
 			path: src/Write/Product/Shared/Domain/Entity/Stock.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Stock\\:\\:\\$products is never read, only written\\.$#"
-			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Stock.php
-
-		-
 			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
 			count: 1
 			path: tests/IntegrationTestCase.php
