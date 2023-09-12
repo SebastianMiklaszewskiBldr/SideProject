@@ -1,22 +1,47 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#1 \\$amount of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\Amount constructor expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+
+		-
+			message: "#^Parameter \\#1 \\$category of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductCategory constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductName constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+
+		-
+			message: "#^Parameter \\#1 \\$uuid of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductId constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+
+		-
 			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$amount is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Product/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$productCategory is never read, only written\\.$#"
+			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$category is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Product/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$productId is never read, only written\\.$#"
+			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$id is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Product/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$productName is never read, only written\\.$#"
+			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$name is never read, only written\\.$#"
+			count: 1
+			path: src/Write/Product/Shared/Domain/Entity/Product.php
+
+		-
+			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$stock is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Product/Shared/Domain/Entity/Product.php
 
@@ -29,6 +54,16 @@ parameters:
 			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Stock\\:\\:\\$products is never read, only written\\.$#"
 			count: 1
 			path: src/Write/Product/Shared/Domain/Entity/Stock.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
+			count: 1
+			path: tests/IntegrationTestCase.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\SmokeTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
+			count: 1
+			path: tests/SmokeTestCase.php
 
 		-
 			message: "#^Property App\\\\Tests\\\\SmokeTestCase\\:\\:\\$router \\(Symfony\\\\Component\\\\Routing\\\\Router\\) does not accept object\\.$#"
@@ -44,3 +79,8 @@ parameters:
 			message: "#^Parameter \\#1 \\$productValidationRepository of class App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Validator\\\\ProductValidator constructor expects App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Repository\\\\ProductValidationRepositoryInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
 			count: 2
 			path: tests/Write/Product/Shared/Application/Validator/ProductValidatorTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Write\\\\Product\\\\Shared\\\\Infrastructure\\\\Repository\\\\StockRepositoryTest\\:\\:\\$repository \\(App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Repository\\\\StockRepositoryInterface\\) does not accept object\\.$#"
+			count: 1
+			path: tests/Write/Product/Shared/Infrastructure/Repository/StockRepositoryTest.php

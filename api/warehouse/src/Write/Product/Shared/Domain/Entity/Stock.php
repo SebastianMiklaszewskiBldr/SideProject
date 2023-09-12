@@ -27,7 +27,7 @@ final class Stock
     private string $name;
 
     /**
-     * @var Collection<Product>
+     * @var Collection<int, Product>
      */
     #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Product::class, cascade: ['REMOVE', 'PERSIST'], orphanRemoval: true, indexBy: 'name')]
     private Collection $products;
