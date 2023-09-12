@@ -23,7 +23,7 @@ final readonly class StockRepository implements StockRepositoryInterface
         /** @var Stock|null $stock */
         $stock = $this->entityManager->find(Stock::class, $stockId->uuid);
 
-        if(null === $stock) {
+        if (null === $stock) {
             throw new NotFoundException(sprintf('Stock: %s not found.', $stockId->uuid));
         }
 

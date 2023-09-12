@@ -8,7 +8,6 @@ use App\Shared\Domain\ValueObject\ProductId;
 use App\Shared\Domain\ValueObject\ProductName;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 final readonly class AddProductRequest
 {
     #[Assert\Valid]

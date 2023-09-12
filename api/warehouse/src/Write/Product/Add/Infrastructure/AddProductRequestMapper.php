@@ -28,7 +28,7 @@ final readonly class AddProductRequestMapper
 
         $violations = $this->validator->validate($request);
 
-        if(0 !== $violations->count()) {
+        if (0 !== $violations->count()) {
             $this->throwException($violations);
         }
 

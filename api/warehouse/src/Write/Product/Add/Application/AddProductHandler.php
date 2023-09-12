@@ -14,19 +14,18 @@ final readonly class AddProductHandler
         private StockRepositoryInterface $stockRepository,
         private ProductFactory $productFactory,
         private ProductValidator $productValidator,
-    )
-    {
+    ) {
     }
 
     public function handle(AddProductCommand $command): void
     {
         try {
             $stock = $this->stockRepository->getOneById($command->stockId);
-        } catch(NotFoundException $e) {
+        } catch (NotFoundException $e) {
             throw new LogicException($e->getMessage());
         }
 
-        $this->stockRepository->wrapInTransaction(function() use ($stock, $command): void {
+        $this->stockRepository->wrapInTransaction(function () use ($stock, $command): void {
             $stock->addProduct(
                 $command->productId,
                 $command->productName,

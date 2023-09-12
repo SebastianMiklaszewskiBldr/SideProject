@@ -39,7 +39,7 @@ final readonly class ProductValidationRepository implements ProductValidationRep
 
         try {
             return 0 !== (int) $qb->getQuery()->getSingleScalarResult();
-        } catch(NoResultException|NonUniqueResultException $e) {
+        } catch (NoResultException | NonUniqueResultException $e) {
             throw new LogicException($e->getMessage());
         }
     }

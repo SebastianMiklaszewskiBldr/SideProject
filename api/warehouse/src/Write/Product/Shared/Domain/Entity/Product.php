@@ -36,8 +36,7 @@ final readonly class Product
         ProductCategory $category,
         Amount $amount,
         Stock $stock,
-    )
-    {
+    ) {
         $this->id = $id->uuid;
         $this->name = $name->name;
         $this->category = $category->category;
