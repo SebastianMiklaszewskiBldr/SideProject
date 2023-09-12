@@ -1,4 +1,4 @@
 api.products.add:
   controller: App\Write\Product\Add\Presentation\AddProductController::add
   methods: POST
-  path: /api/products
+  path: /api/stocks/{stockId}/products

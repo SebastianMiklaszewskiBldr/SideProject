@@ -15,7 +15,7 @@ final class ProductValidatorTest extends UnitTestCase
 {
     private MockObject $productValidationRepositoryMock;
 
-    public function test_ValidateProductCanBeAddedToStock_ShouldReturnFalse_WhenInStockIsAlreadyProductWithProvidedName(): void
+    public function test_HasStockAlreadyProduct_ShouldReturnTrue_WhenInStockIsAlreadyProductWithProvidedName(): void
     {
         $this->productValidationRepositoryMock
             ->method('hasStockAProductWithProvidedName')
@@ -27,9 +27,9 @@ final class ProductValidatorTest extends UnitTestCase
             new ProductName('test')
         );
 
-        self::assertFalse($result);
+        self::assertTrue($result);
     }
-    public function test_ValidateProductCanBeAddedToStock_ShouldReturnTrue_WhenStockDoesNotHaveAlreadyProductWithProvidedName(): void
+    public function test_HasStockAlreadyProduct_ShouldReturnFalse_WhenStockDoesNotHaveAlreadyProductWithProvidedName(): void
     {
         $this->productValidationRepositoryMock
             ->method('hasStockAProductWithProvidedName')
@@ -41,7 +41,7 @@ final class ProductValidatorTest extends UnitTestCase
             new ProductName('test')
         );
 
-        self::assertTrue($result);
+        self::assertFalse($result);
     }
 
     protected function setUp(): void

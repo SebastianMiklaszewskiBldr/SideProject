@@ -16,6 +16,7 @@ final class AddProductHandlerTest extends IntegrationTestCase
 
     public function test_Handle_ShouldSaveProduct_WhenProductCreatedWithoutExceptions(): void
     {
+        $this->testData->loadStock();
         $command = $this->testData->getCommand();
 
         $this->handler->handle($command);
@@ -27,8 +28,17 @@ final class AddProductHandlerTest extends IntegrationTestCase
     {
         parent::setUp();
 
-        $this->testData = new AddProductTestData();
-        $this->assertions = new AddProductHandlerTestAssertions($this);
+        $this->testData = new AddProductTestData($this->getEntityManager());
+        $this->assertions = new AddProductHandlerTestAssertions($this, $this->getEntityManager());
         $this->handler = self::getContainer()->get(AddProductHandler::class);
+
+        $this->beginTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->rollbackTransaction();
+
+        parent::tearDown();
     }
 }

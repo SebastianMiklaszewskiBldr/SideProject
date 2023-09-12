@@ -6,12 +6,8 @@ use App\Shared\Application\Exception\NotFoundException;
 use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
 use App\Write\Product\Shared\Domain\Entity\Stock;
-use Doctrine\ORM\EntityManager;
+use Closure;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\TransactionRequiredException;
-use RuntimeException;
 
 final readonly class StockRepository implements StockRepositoryInterface
 {
@@ -32,5 +28,10 @@ final readonly class StockRepository implements StockRepositoryInterface
         }
 
         return $stock;
+    }
+
+    public function wrapInTransaction(Closure $transactional): void
+    {
+        $this->entityManager->wrapInTransaction($transactional);
     }
 }

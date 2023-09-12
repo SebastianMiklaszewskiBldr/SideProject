@@ -11,6 +11,8 @@ use App\Shared\Domain\ValueObject\StockName;
 use App\Write\Product\Add\Domain\CannotAddProductToStockException;
 use App\Write\Product\Add\Domain\ProductFactory;
 use App\Write\Product\Shared\Application\Validator\ProductValidator;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -25,17 +27,17 @@ final class Stock
     private string $name;
 
     /**
-     * @var array<int, Product>
+     * @var Collection<Product>
      */
-    #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Product::class, cascade: ['REMOVE'], orphanRemoval: true, indexBy: 'name')]
-    private array $products;
+    #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Product::class, cascade: ['REMOVE', 'PERSIST'], orphanRemoval: true, indexBy: 'name')]
+    private Collection $products;
 
     public function __construct(StockId $id, StockName $name)
     {
         $this->id = $id->uuid;
         $this->name = $name->name;
 
-        $this->products = [];
+        $this->products = new ArrayCollection([]);
     }
 
     public static function createDefault(StockId $id): self
@@ -55,7 +57,7 @@ final class Stock
         ProductFactory $productFactory,
     ): void
     {
-        if(false === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
+        if(true === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
             throw CannotAddProductToStockException::becauseStockAlreadyHasProduct($this->getId(), $productName);
         }
 

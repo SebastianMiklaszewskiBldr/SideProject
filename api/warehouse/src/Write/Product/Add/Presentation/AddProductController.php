@@ -20,7 +20,7 @@ final class AddProductController extends AbstractController
     ) {
     }
 
-    public function add(string $stockId, Request $request): JsonResponse
+    public function add(Request $request, string $stockId): JsonResponse
     {
         $mappedRequest = $this->requestMapper->map($request);
 

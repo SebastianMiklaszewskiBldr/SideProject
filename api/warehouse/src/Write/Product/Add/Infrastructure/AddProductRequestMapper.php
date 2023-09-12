@@ -20,7 +20,7 @@ final readonly class AddProductRequestMapper
     public function map(Request $request): AddProductRequest
     {
         $request = new AddProductRequest(
-            new ProductId($request->request->get('productId')),
+            new ProductId($request->request->get('id')),
             new ProductName($request->request->get('name')),
             new ProductCategory($request->request->get('category')),
             new Amount($request->request->get('amount'))
@@ -28,7 +28,7 @@ final readonly class AddProductRequestMapper
 
         $violations = $this->validator->validate($request);
 
-        if(0 === $violations->count()) {
+        if(0 !== $violations->count()) {
             $this->throwException($violations);
         }
 

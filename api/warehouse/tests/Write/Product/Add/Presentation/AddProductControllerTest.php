@@ -13,7 +13,15 @@ final class AddProductControllerTest extends SmokeTestCase
 
     public function test_Add_ShouldReturn200StatusCode_WhenNoExceptionOccurred(): void
     {
-        $response = $this->sendPostRequest(TestUrlName::ADD_PRODUCT, [], $this->testData->getRequestBody());
+        $this->testData->loadStock();
+
+        $response = $this->sendPostRequest(
+            TestUrlName::ADD_PRODUCT,
+            [
+                'stockId' => $this->testData->getStockId()->uuid,
+            ],
+            $this->testData->getRequestBody()
+        );
 
         self::assertEquals(TestHttpStatusCode::RESOURCE_CREATED->value, $response->getStatusCode());
     }
@@ -22,6 +30,15 @@ final class AddProductControllerTest extends SmokeTestCase
     {
         parent::setUp();
 
-        $this->testData = new AddProductTestData();
+        $this->testData = new AddProductTestData($this->getEntityManager());
+
+        $this->beginTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->rollbackTransaction();
+
+        parent::tearDown();
     }
 }

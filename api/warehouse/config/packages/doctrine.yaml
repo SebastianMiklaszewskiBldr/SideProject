@@ -27,11 +27,11 @@ doctrine:
         prefix: 'App\Write\Product\Shared\Domain\Entity'
         alias: App.Write.Product
 
-when@test:
-  doctrine:
-    dbal:
+#when@test:
+#  doctrine:
+#    dbal:
       # "TEST_TOKEN" is typically set by ParaTest
-      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+#      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
 
 when@prod:
   doctrine:

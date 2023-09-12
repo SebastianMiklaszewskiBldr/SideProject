@@ -4,6 +4,7 @@
 
 namespace App\Tests;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,5 +34,20 @@ class SmokeTestCase extends WebTestCase
         $this->client->request(TestHttpMethod::POST->value, $url, $bodyParams);
 
         return $this->client->getResponse();
+    }
+
+    protected function beginTransaction(): void
+    {
+        $this->getEntityManager()->beginTransaction();
+    }
+
+    protected function getEntityManager(): EntityManagerInterface
+    {
+        return self::getContainer()->get(EntityManagerInterface::class);
+    }
+
+    protected function rollbackTransaction(): void
+    {
+        $this->getEntityManager()->rollback();
     }
 }

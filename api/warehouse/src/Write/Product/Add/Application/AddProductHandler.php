@@ -3,7 +3,6 @@
 namespace App\Write\Product\Add\Application;
 
 use App\Shared\Application\Exception\NotFoundException;
-use App\Write\Product\Add\Domain\CannotAddProductToStockException;
 use App\Write\Product\Add\Domain\ProductFactory;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
 use App\Write\Product\Shared\Application\Validator\ProductValidator;
@@ -19,9 +18,6 @@ final readonly class AddProductHandler
     {
     }
 
-    /**
-     * @throws CannotAddProductToStockException
-     */
     public function handle(AddProductCommand $command): void
     {
         try {
@@ -30,13 +26,15 @@ final readonly class AddProductHandler
             throw new LogicException($e->getMessage());
         }
 
-        $stock->addProduct(
-            $command->productId,
-            $command->productName,
-            $command->productCategory,
-            $command->amount,
-            $this->productValidator,
-            $this->productFactory
-        );
+        $this->stockRepository->wrapInTransaction(function() use ($stock, $command): void {
+            $stock->addProduct(
+                $command->productId,
+                $command->productName,
+                $command->productCategory,
+                $command->amount,
+                $this->productValidator,
+                $this->productFactory
+            );
+        });
     }
 }
