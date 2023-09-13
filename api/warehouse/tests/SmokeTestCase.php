@@ -36,6 +36,18 @@ class SmokeTestCase extends WebTestCase
         return $this->client->getResponse();
     }
 
+    /**
+     * @param array<string, string> $urlParams
+     */
+    protected function sendGetRequest(TestUrlName $url, array $urlParams): Response
+    {
+        $url = $this->router->generate($url->value, $urlParams);
+
+        $this->client->request(TestHttpMethod::GET->value, $url);
+
+        return $this->client->getResponse();
+    }
+
     protected function beginTransaction(): void
     {
         $this->getEntityManager()->beginTransaction();
