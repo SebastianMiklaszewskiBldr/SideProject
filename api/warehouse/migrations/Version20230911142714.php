@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
 
-final class Version20230911142714 extends AbstractMigration
+final class Version20230911142714 extends AbstractWriteMigration
 {
     public function getDescription(): string
     {
@@ -16,6 +15,8 @@ final class Version20230911142714 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
+        parent::up($schema);
+
         $this->addSql(
             'CREATE TABLE products (id UUID NOT NULL, stock UUID NOT NULL, name VARCHAR(255) NOT NULL, category VARCHAR(255) NOT NULL, amount INT NOT NULL, PRIMARY KEY(id))'
         );
@@ -28,6 +29,8 @@ final class Version20230911142714 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
+        parent::down($schema);
+
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE products DROP CONSTRAINT FK_B3BA5A5A4B365660');
         $this->addSql('DROP TABLE products');
