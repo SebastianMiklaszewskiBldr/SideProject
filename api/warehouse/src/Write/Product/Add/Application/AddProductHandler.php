@@ -2,6 +2,7 @@
 
 namespace App\Write\Product\Add\Application;
 
+use App\Shared\Application\Event\EventDispatcherInterface;
 use App\Shared\Application\Exception\NotFoundException;
 use App\Write\Product\Add\Domain\ProductFactory;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
@@ -14,26 +15,31 @@ final readonly class AddProductHandler
         private StockRepositoryInterface $stockRepository,
         private ProductFactory $productFactory,
         private ProductValidator $productValidator,
-    ) {
+        private EventDispatcherInterface $eventDispatcher,
+    )
+    {
     }
 
     public function handle(AddProductCommand $command): void
     {
         try {
             $stock = $this->stockRepository->getOneById($command->stockId);
-        } catch (NotFoundException $e) {
+        } catch(NotFoundException $e) {
             throw new LogicException($e->getMessage());
         }
 
-        $this->stockRepository->wrapInTransaction(function () use ($stock, $command): void {
+        $this->stockRepository->wrapInTransaction(function() use ($stock, $command): void {
             $stock->addProduct(
                 $command->productId,
                 $command->productName,
                 $command->productCategory,
                 $command->amount,
                 $this->productValidator,
-                $this->productFactory
+                $this->productFactory,
+                $this->eventDispatcher
             );
+
+            $this->eventDispatcher->dispatch();
         });
     }
 }

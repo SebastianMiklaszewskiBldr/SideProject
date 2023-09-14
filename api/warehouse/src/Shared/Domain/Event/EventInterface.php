@@ -2,7 +2,9 @@
 
 namespace App\Shared\Domain\Event;
 
-interface EventInterface
+use JsonSerializable;
+
+interface EventInterface extends JsonSerializable
 {
 
 }

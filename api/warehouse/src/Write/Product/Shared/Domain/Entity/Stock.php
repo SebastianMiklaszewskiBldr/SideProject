@@ -2,6 +2,8 @@
 
 namespace App\Write\Product\Shared\Domain\Entity;
 
+use App\Shared\Domain\Event\EventStoreInterface;
+use App\Shared\Domain\Event\ProductAdded;
 use App\Shared\Domain\ValueObject\Amount;
 use App\Shared\Domain\ValueObject\ProductCategory;
 use App\Shared\Domain\ValueObject\ProductId;
@@ -55,14 +57,20 @@ final class Stock
         Amount $amount,
         ProductValidator $productValidator,
         ProductFactory $productFactory,
-    ): void {
-        if (true === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
+        EventStoreInterface $eventStore,
+    ): void
+    {
+        if(true === $productValidator->hasStockAlreadyProduct($this->getId(), $productName)) {
             throw CannotAddProductToStockException::becauseStockAlreadyHasProduct($this->getId(), $productName);
         }
 
         $product = $productFactory->create($productId, $productName, $productCategory, $amount, $this);
 
         $this->addProductToStock($product);
+
+        $eventStore->pushEvent(
+            new ProductAdded($productId->uuid, $productName->name, $this->id, $this->name, $amount->amount)
+        );
     }
 
     private function getId(): StockId
