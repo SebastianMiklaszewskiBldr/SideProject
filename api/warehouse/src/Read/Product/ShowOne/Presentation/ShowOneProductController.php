@@ -4,9 +4,11 @@ namespace App\Read\Product\ShowOne\Presentation;
 
 use App\Read\Product\ShowOne\Application\ShowOneProductHandler;
 use App\Read\Product\ShowOne\Application\ShowOneProductQuery;
+use App\Shared\Application\Exception\NotFoundException;
 use App\Shared\Domain\ValueObject\ProductId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class ShowOneProductController extends AbstractController
 {
@@ -16,8 +18,12 @@ final class ShowOneProductController extends AbstractController
 
     public function show(string $productId): JsonResponse
     {
-        return new JsonResponse(
-            $this->handler->handle(new ShowOneProductQuery(new ProductId($productId)))
-        );
+        try {
+            return new JsonResponse(
+                $this->handler->handle(new ShowOneProductQuery(new ProductId($productId)))
+            );
+        } catch(NotFoundException $e) {
+            throw new NotFoundHttpException($e->getMessage());
+        }
     }
 }

@@ -20,6 +20,8 @@ class ShowOneProductHandlerTest extends IntegrationTestCase
 
     public function test_Handle_ShouldReturnProduct_WhenProductExistsInDataSource(): void
     {
+        $this->testData->loadData();
+
         $result = $this->handler->handle($this->testData->getQuery());
 
         self::assertEquals($this->testData->getExpectedProductView(), $result);
@@ -29,14 +31,14 @@ class ShowOneProductHandlerTest extends IntegrationTestCase
     {
         parent::setUp();
 
-        $this->testData = new ShowOneProductTestData();
+        $this->testData = new ShowOneProductTestData($this->getReadEntityManager());
         $this->handler = self::getContainer()->get(ShowOneProductHandler::class);
-        $this->beginWriteEMTransaction();
+        $this->beginReadEMTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackWriteEMTransaction();
+        $this->rollbackReadEMTransaction();
 
         parent::tearDown();
     }

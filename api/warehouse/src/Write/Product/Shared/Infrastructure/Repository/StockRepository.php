@@ -6,7 +6,7 @@ use App\Shared\Application\Exception\NotFoundException;
 use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
 use App\Write\Product\Shared\Domain\Entity\Stock;
-use App\Write\Product\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
+use App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Closure;
 
 final readonly class StockRepository implements StockRepositoryInterface

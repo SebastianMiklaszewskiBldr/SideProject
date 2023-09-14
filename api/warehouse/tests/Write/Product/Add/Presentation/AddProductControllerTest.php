@@ -30,14 +30,14 @@ final class AddProductControllerTest extends SmokeTestCase
     {
         parent::setUp();
 
-        $this->testData = new AddProductTestData($this->getEntityManager());
+        $this->testData = new AddProductTestData($this->getWriteEntityManager());
 
-        $this->beginTransaction();
+        $this->beginWriteEMTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackTransaction();
+        $this->rollbackWriteEMTransaction();
 
         parent::tearDown();
     }

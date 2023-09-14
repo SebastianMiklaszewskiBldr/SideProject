@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Read\Product\Shared\Infrastructure\Doctrine;
+namespace App\Read\Shared\Infrastructure\Doctrine;
 
 use Doctrine\ORM\Decorator\EntityManagerDecorator;
 

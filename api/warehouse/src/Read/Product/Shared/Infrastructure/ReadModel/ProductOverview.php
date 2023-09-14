@@ -2,6 +2,11 @@
 
 namespace App\Read\Product\Shared\Infrastructure\ReadModel;
 
+use App\Shared\Domain\ValueObject\Amount;
+use App\Shared\Domain\ValueObject\ProductId;
+use App\Shared\Domain\ValueObject\ProductName;
+use App\Shared\Domain\ValueObject\StockId;
+use App\Shared\Domain\ValueObject\StockName;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(readOnly: true)]
@@ -25,16 +30,37 @@ final readonly class ProductOverview
     private string $stockName;
 
     public function __construct(
-        string $id,
-        string $name,
-        int $amount,
-        string $stockId,
-        string $stockName,
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->amount = $amount;
-        $this->stockId = $stockId;
-        $this->stockName = $stockName;
+        ProductId $id,
+        ProductName $name,
+        Amount $amount,
+        StockId $stockId,
+        StockName $stockName,
+    )
+    {
+        $this->id = $id->uuid;
+        $this->name = $name->name;
+        $this->amount = $amount->amount;
+        $this->stockId = $stockId->uuid;
+        $this->stockName = $stockName->name;
+    }
+
+    public function getId(): ProductId
+    {
+        return new ProductId($this->id);
+    }
+
+    public function getName(): ProductName
+    {
+        return new ProductName($this->name);
+    }
+
+    public function getStockName(): StockName
+    {
+        return new StockName($this->stockName);
+    }
+
+    public function getAmount(): Amount
+    {
+        return new Amount($this->amount);
     }
 }

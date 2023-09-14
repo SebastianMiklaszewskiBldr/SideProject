@@ -6,7 +6,7 @@ use App\Shared\Domain\ValueObject\ProductName;
 use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Shared\Application\Repository\ProductValidationRepositoryInterface;
 use App\Write\Product\Shared\Domain\Entity\Product;
-use App\Write\Product\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
+use App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use LogicException;

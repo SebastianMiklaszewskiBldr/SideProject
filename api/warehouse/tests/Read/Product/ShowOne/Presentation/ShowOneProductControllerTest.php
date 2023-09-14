@@ -13,6 +13,8 @@ final class ShowOneProductControllerTest extends SmokeTestCase
 
     public function test_Show_ShouldReturn200StatusCode_WhenProductWasReturnedCorrectly(): void
     {
+        $this->testData->loadData();
+
         $response = $this->sendGetRequest(
             TestUrlName::SHOW_ONE_PRODUCT,
             [
@@ -27,6 +29,15 @@ final class ShowOneProductControllerTest extends SmokeTestCase
     {
         parent::setUp();
 
-        $this->testData = new ShowOneProductTestData();
+        $this->testData = new ShowOneProductTestData($this->getReadEntityManager());
+
+        $this->beginReadEMTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->rollbackReadEMTransaction();
+
+        parent::tearDown();
     }
 }
