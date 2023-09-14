@@ -11,7 +11,7 @@ abstract class AbstractWriteMigration extends AbstractMigration
     {
         $this->skipIf(
             false === $this->isUsedWriteConnection(),
-            sprintf('Current migration: %s is not destined for write db.', self::class)
+            sprintf('Current migration: %s is not destined for write db.', $this::class)
         );
     }
 
@@ -26,7 +26,7 @@ abstract class AbstractWriteMigration extends AbstractMigration
     {
         $this->skipIf(
             false === $this->isUsedWriteConnection(),
-            sprintf('Current migration: %s is not destined for write db.', self::class)
+            sprintf('Current migration: %s is not destined for write db.', $this::class)
         );
     }
 }

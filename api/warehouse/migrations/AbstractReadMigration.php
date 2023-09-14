@@ -11,7 +11,7 @@ abstract class AbstractReadMigration extends AbstractMigration
     {
         $this->skipIf(
             false === $this->isUsedReadConnection(),
-            sprintf('Current migration: %s is not destined for read db.', self::class)
+            sprintf('Current migration: %s is not destined for read db.', $this::class)
         );
     }
 
@@ -26,7 +26,7 @@ abstract class AbstractReadMigration extends AbstractMigration
     {
         $this->skipIf(
             false === $this->isUsedReadConnection(),
-            sprintf('Current migration: %s is not destined for read db.', self::class)
+            sprintf('Current migration: %s is not destined for read db.', $this::class)
         );
     }
 }

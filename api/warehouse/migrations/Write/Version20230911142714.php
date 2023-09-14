@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DoctrineMigrations;
+namespace DoctrineMigrationsWrite;
 
 use Doctrine\DBAL\Schema\Schema;
+use DoctrineMigrations\AbstractWriteMigration;
 
 final class Version20230911142714 extends AbstractWriteMigration
 {
