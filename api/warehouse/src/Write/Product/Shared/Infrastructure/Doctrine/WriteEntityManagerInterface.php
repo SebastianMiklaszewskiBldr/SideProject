@@ -6,5 +6,4 @@ use Doctrine\ORM\EntityManagerInterface;
 
 interface WriteEntityManagerInterface extends EntityManagerInterface
 {
-
 }

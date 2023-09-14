@@ -16,8 +16,7 @@ final readonly class SingleProductView implements JsonSerializable
         private string $name,
         private string $stockName,
         private int $amount,
-    )
-    {
+    ) {
     }
 
     /**

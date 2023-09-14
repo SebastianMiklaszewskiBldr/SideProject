@@ -15,8 +15,7 @@ final class AddProductController extends AbstractController
     public function __construct(
         private readonly AddProductRequestMapper $requestMapper,
         private readonly AddProductHandler $handler,
-    )
-    {
+    ) {
     }
 
     public function add(Request $request, string $stockId): JsonResponse

@@ -12,7 +12,7 @@ final readonly class WriteEntityManagerFactory
     {
         $manager = $managerRegistry->getManager('write');
 
-        if(false === $manager instanceof EntityManagerInterface) {
+        if (false === $manager instanceof EntityManagerInterface) {
             throw new LogicException('Manager has to be instance of EntityManagerInterface.');
         }
 

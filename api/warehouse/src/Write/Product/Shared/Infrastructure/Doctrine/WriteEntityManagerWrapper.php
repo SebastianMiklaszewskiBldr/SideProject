@@ -6,6 +6,4 @@ use Doctrine\ORM\Decorator\EntityManagerDecorator;
 
 final class WriteEntityManagerWrapper extends EntityManagerDecorator implements WriteEntityManagerInterface
 {
-
-
 }

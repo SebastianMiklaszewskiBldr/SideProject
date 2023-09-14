@@ -24,7 +24,6 @@ final class ShowOneProductControllerTest extends SmokeTestCase
     }
 
     protected function setUp(): void
-
     {
         parent::setUp();
 

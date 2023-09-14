@@ -30,8 +30,7 @@ final readonly class ProductOverview
         int $amount,
         string $stockId,
         string $stockName,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->amount = $amount;

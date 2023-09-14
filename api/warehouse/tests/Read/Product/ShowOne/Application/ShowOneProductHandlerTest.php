@@ -9,7 +9,6 @@ use App\Tests\Read\Product\ShowOne\ShowOneProductTestData;
 
 class ShowOneProductHandlerTest extends IntegrationTestCase
 {
-
     private ShowOneProductTestData $testData;
     private ShowOneProductHandler $handler;
 
