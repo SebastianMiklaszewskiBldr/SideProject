@@ -14,7 +14,10 @@ services:
     factory: [ 'App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create' ]
 
   App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapper:
-    factory: [ 'App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapper', 'create' ]
+    factory: [ 'App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapperFactory', 'create' ]
+
+  App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapper:
+    factory: [ 'App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapperFactory', 'create' ]
 
 when@test:
   services:

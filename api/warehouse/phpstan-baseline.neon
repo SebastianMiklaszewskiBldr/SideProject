@@ -1,6 +1,31 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$amount is never read, only written\\.$#"
+			count: 1
+			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+
+		-
+			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$id is never read, only written\\.$#"
+			count: 1
+			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+
+		-
+			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$name is never read, only written\\.$#"
+			count: 1
+			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+
+		-
+			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$stockId is never read, only written\\.$#"
+			count: 1
+			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+
+		-
+			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$stockName is never read, only written\\.$#"
+			count: 1
+			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+
+		-
 			message: "#^Parameter \\#1 \\$amount of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\Amount constructor expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
@@ -51,9 +76,14 @@ parameters:
 			path: src/Write/Product/Shared/Domain/Entity/Stock.php
 
 		-
-			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
+			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getWriteEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
 			count: 1
 			path: tests/IntegrationTestCase.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Read\\\\Product\\\\ShowOne\\\\Application\\\\ShowOneProductHandlerTest\\:\\:\\$handler \\(App\\\\Read\\\\Product\\\\ShowOne\\\\Application\\\\ShowOneProductHandler\\) does not accept object\\.$#"
+			count: 1
+			path: tests/Read/Product/ShowOne/Application/ShowOneProductHandlerTest.php
 
 		-
 			message: "#^Method App\\\\Tests\\\\SmokeTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
