@@ -41,12 +41,12 @@ final class AddProductHandlerTest extends IntegrationTestCase
         $this->assertions = new AddProductHandlerTestAssertions($this, $this->getWriteEntityManager());
         $this->handler = self::getContainer()->get(AddProductHandler::class);
 
-        $this->beginWriteEMTransaction();
+        $this->beginWriteConnectionTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackWriteEMTransaction();
+        $this->rollbackWriteConnectionTransaction();
 
         parent::tearDown();
     }

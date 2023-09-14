@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class IntegrationTestCase extends KernelTestCase
 {
-    protected function beginWriteEMTransaction(): void
+    protected function beginWriteConnectionTransaction(): void
     {
         $this->getWriteEntityManager()->beginTransaction();
     }
@@ -19,12 +19,12 @@ class IntegrationTestCase extends KernelTestCase
         return self::getContainer()->get(WriteEntityManagerInterface::class);
     }
 
-    protected function rollbackWriteEMTransaction(): void
+    protected function rollbackWriteConnectionTransaction(): void
     {
         $this->getWriteEntityManager()->rollback();
     }
 
-    protected function beginReadEMTransaction(): void
+    protected function beginReadConnectionTransaction(): void
     {
         $this->getReadEntityManager()->beginTransaction();
     }
@@ -34,7 +34,7 @@ class IntegrationTestCase extends KernelTestCase
         return self::getContainer()->get(ReadEntityManagerInterface::class);
     }
 
-    protected function rollbackReadEMTransaction(): void
+    protected function rollbackReadConnectionTransaction(): void
     {
         $this->getReadEntityManager()->rollback();
     }

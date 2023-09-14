@@ -7,7 +7,7 @@ use App\Shared\Application\Exception\NotFoundException;
 use App\Tests\IntegrationTestCase;
 use App\Tests\Read\Product\ShowOne\ShowOneProductTestData;
 
-class ShowOneProductHandlerTest extends IntegrationTestCase
+final class ShowOneProductHandlerTest extends IntegrationTestCase
 {
     private ShowOneProductTestData $testData;
     private ShowOneProductHandler $handler;
@@ -33,12 +33,13 @@ class ShowOneProductHandlerTest extends IntegrationTestCase
 
         $this->testData = new ShowOneProductTestData($this->getReadEntityManager());
         $this->handler = self::getContainer()->get(ShowOneProductHandler::class);
-        $this->beginReadEMTransaction();
+
+        $this->beginReadConnectionTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackReadEMTransaction();
+        $this->rollbackReadConnectionTransaction();
 
         parent::tearDown();
     }

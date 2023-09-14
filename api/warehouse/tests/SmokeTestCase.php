@@ -65,7 +65,7 @@ class SmokeTestCase extends WebTestCase
         $this->getWriteEntityManager()->rollback();
     }
 
-    protected function beginReadEMTransaction(): void
+    protected function beginReadConnectionTransaction(): void
     {
         $this->getReadEntityManager()->beginTransaction();
     }
@@ -75,7 +75,7 @@ class SmokeTestCase extends WebTestCase
         return self::getContainer()->get(ReadEntityManagerInterface::class);
     }
 
-    protected function rollbackReadEMTransaction(): void
+    protected function rollbackReadConnectionTransaction(): void
     {
         $this->getReadEntityManager()->rollback();
     }

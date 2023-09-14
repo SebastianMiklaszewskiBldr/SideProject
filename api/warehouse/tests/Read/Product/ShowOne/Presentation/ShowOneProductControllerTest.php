@@ -31,12 +31,12 @@ final class ShowOneProductControllerTest extends SmokeTestCase
 
         $this->testData = new ShowOneProductTestData($this->getReadEntityManager());
 
-        $this->beginReadEMTransaction();
+        $this->beginReadConnectionTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackReadEMTransaction();
+        $this->rollbackReadConnectionTransaction();
 
         parent::tearDown();
     }
