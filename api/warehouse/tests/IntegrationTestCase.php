@@ -2,23 +2,24 @@
 
 namespace App\Tests;
 
+use App\Write\Product\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class IntegrationTestCase extends KernelTestCase
 {
-    protected function beginTransaction(): void
+    protected function beginWriteEMTransaction(): void
     {
-        $this->getEntityManager()->beginTransaction();
+        $this->getWriteEntityManager()->beginTransaction();
     }
 
-    protected function getEntityManager(): EntityManagerInterface
+    protected function getWriteEntityManager(): EntityManagerInterface
     {
-        return self::getContainer()->get(EntityManagerInterface::class);
+        return self::getContainer()->get(WriteEntityManagerInterface::class);
     }
 
-    protected function rollbackTransaction(): void
+    protected function rollbackWriteEMTransaction(): void
     {
-        $this->getEntityManager()->rollback();
+        $this->getWriteEntityManager()->rollback();
     }
 }

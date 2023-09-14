@@ -6,14 +6,14 @@ use App\Shared\Domain\ValueObject\ProductName;
 use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Shared\Application\Repository\ProductValidationRepositoryInterface;
 use App\Write\Product\Shared\Domain\Entity\Product;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Write\Product\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use LogicException;
 
 final readonly class ProductValidationRepository implements ProductValidationRepositoryInterface
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private WriteEntityManagerInterface $entityManager)
     {
     }
 
@@ -39,7 +39,7 @@ final readonly class ProductValidationRepository implements ProductValidationRep
 
         try {
             return 0 !== (int) $qb->getQuery()->getSingleScalarResult();
-        } catch (NoResultException | NonUniqueResultException $e) {
+        } catch(NoResultException|NonUniqueResultException $e) {
             throw new LogicException($e->getMessage());
         }
     }

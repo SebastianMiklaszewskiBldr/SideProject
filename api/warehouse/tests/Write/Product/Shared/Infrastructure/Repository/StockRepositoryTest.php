@@ -21,7 +21,7 @@ final class StockRepositoryTest extends IntegrationTestCase
     {
         parent::setUp();
 
-        $this->testData = new StockRepositoryTestData($this->getEntityManager());
+        $this->testData = new StockRepositoryTestData($this->getWriteEntityManager());
         $this->repository = self::getContainer()->get(StockRepositoryInterface::class);
     }
 }

@@ -32,12 +32,12 @@ class ShowOneProductHandlerTest extends IntegrationTestCase
 
         $this->testData = new ShowOneProductTestData();
         $this->handler = self::getContainer()->get(ShowOneProductHandler::class);
-        $this->beginTransaction();
+        $this->beginWriteEMTransaction();
     }
 
     protected function tearDown(): void
     {
-        $this->rollbackTransaction();
+        $this->rollbackWriteEMTransaction();
 
         parent::tearDown();
     }

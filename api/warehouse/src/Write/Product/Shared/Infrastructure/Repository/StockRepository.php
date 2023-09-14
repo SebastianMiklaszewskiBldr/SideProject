@@ -6,12 +6,12 @@ use App\Shared\Application\Exception\NotFoundException;
 use App\Shared\Domain\ValueObject\StockId;
 use App\Write\Product\Shared\Application\Repository\StockRepositoryInterface;
 use App\Write\Product\Shared\Domain\Entity\Stock;
+use App\Write\Product\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Closure;
-use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class StockRepository implements StockRepositoryInterface
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private WriteEntityManagerInterface $entityManager)
     {
     }
 
@@ -23,7 +23,7 @@ final readonly class StockRepository implements StockRepositoryInterface
         /** @var Stock|null $stock */
         $stock = $this->entityManager->find(Stock::class, $stockId->uuid);
 
-        if (null === $stock) {
+        if(null === $stock) {
             throw new NotFoundException(sprintf('Stock: %s not found.', $stockId->uuid));
         }
 
