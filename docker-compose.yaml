@@ -1,21 +1,26 @@
 version: '3.8'
 services:
   warehouse_api:
+    env_file:
+      - .env
     build:
       context: .
-      dockerfile: Dockerfile.api.warehouse
+      dockerfile: api.warehouse.Dockerfile
       args:
-        - IMAGE_TAG=8.2-fpm-alpine3.17
+        - IMAGE_TAG=${PHP_IMAGE_TAG}
     container_name: shop_api_warehouse
     volumes:
       - ./api/warehouse:/var/www/html
+    depends_on:
+      - warehouse_db_read
+      - warehouse_db_write
 
   warehouse_db_write:
     env_file:
       - .env
     build:
       context: .
-      dockerfile: Dockerfile.db.warehouse.write
+      dockerfile: db.warehouse.write.Dockerfile
       args:
         - IMAGE_TAG=15.4-alpine3.18
     container_name: shop_db_warehouse_write
@@ -31,7 +36,7 @@ services:
       - .env
     build:
       context: .
-      dockerfile: Dockerfile.db.warehouse.read
+      dockerfile: db.warehouse.read.Dockerfile
       args:
         - IMAGE_TAG=15.4-alpine3.18
     container_name: shop_db_warehouse_read
@@ -41,3 +46,15 @@ services:
       - POSTGRES_USER=${WAREHOUSE_DB_USER}
       - POSTGRES_PASSWORD=${WAREHOUSE_DB_PASSWORD}
       - POSTGRES_DB=${WAREHOUSE_READ_DB_NAME}
+
+  catalog_api:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: api.catalog.Dockerfile
+      args:
+        - IMAGE_TAG=${PHP_IMAGE_TAG}
+    container_name: shop_api_catalog
+    volumes:
+      - ./api/catalog:/var/www/html
