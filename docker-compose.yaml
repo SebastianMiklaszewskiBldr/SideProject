@@ -58,3 +58,38 @@ services:
     container_name: shop_api_catalog
     volumes:
       - ./api/catalog:/var/www/html
+    depends_on:
+      - catalog_db_write
+      - catalog_db_read
+
+  catalog_db_write:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: db.catalog.write.Dockerfile
+      args:
+        - IMAGE_TAG=15.4-alpine3.18
+    container_name: shop_db_catalog_write
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=${CATALOG_DB_USER}
+      - POSTGRES_PASSWORD=${CATALOG_DB_PASSWORD}
+      - POSTGRES_DB=${CATALOG_WRITE_DB_NAME}
+
+  catalog_db_read:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: db.catalog.read.Dockerfile
+      args:
+        - IMAGE_TAG=15.4-alpine3.18
+    container_name: shop_db_catalog_read
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=${CATALOG_DB_USER}
+      - POSTGRES_PASSWORD=${CATALOG_DB_PASSWORD}
+      - POSTGRES_DB=${CATALOG_READ_DB_NAME}
