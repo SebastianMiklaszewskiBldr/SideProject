@@ -1,89 +1,114 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$amount is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$amount of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\Amount constructor expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+			path: src/Core/AddProduct/Infrastructure/AddProductRequestMapper.php
 
 		-
-			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$id is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$category of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductCategory constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+			path: src/Core/AddProduct/Infrastructure/AddProductRequestMapper.php
 
 		-
-			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$name is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$name of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductName constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+			path: src/Core/AddProduct/Infrastructure/AddProductRequestMapper.php
 
 		-
-			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$stockId is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$uuid of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductId constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+			path: src/Core/AddProduct/Infrastructure/AddProductRequestMapper.php
 
 		-
-			message: "#^Property App\\\\Read\\\\Product\\\\Shared\\\\Infrastructure\\\\ReadModel\\\\ProductOverview\\:\\:\\$stockName is never read, only written\\.$#"
+			message: "#^Property App\\\\Core\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$amount is never read, only written\\.$#"
 			count: 1
-			path: src/Read/Product/Shared/Infrastructure/ReadModel/ProductOverview.php
+			path: src/Core/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Parameter \\#1 \\$amount of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\Amount constructor expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
+			message: "#^Property App\\\\Core\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$category is never read, only written\\.$#"
 			count: 1
-			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+			path: src/Core/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Parameter \\#1 \\$category of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductCategory constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			message: "#^Property App\\\\Core\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$id is never read, only written\\.$#"
 			count: 1
-			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+			path: src/Core/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Parameter \\#1 \\$name of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductName constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			message: "#^Property App\\\\Core\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$name is never read, only written\\.$#"
 			count: 1
-			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+			path: src/Core/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Parameter \\#1 \\$uuid of class App\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductId constructor expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			message: "#^Property App\\\\Core\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$stock is never read, only written\\.$#"
 			count: 1
-			path: src/Write/Product/Add/Infrastructure/AddProductRequestMapper.php
+			path: src/Core/Shared/Domain/Entity/Product.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$amount is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$amount of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\Amount constructor expects int, mixed given\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Product.php
+			path: src/Core/ShowOneProduct/Infrastructure/SingleProductDataWrapper.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$category is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$name of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductName constructor expects string, mixed given\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Product.php
+			path: src/Core/ShowOneProduct/Infrastructure/SingleProductDataWrapper.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$id is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$name of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\StockName constructor expects string, mixed given\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Product.php
+			path: src/Core/ShowOneProduct/Infrastructure/SingleProductDataWrapper.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$name is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$uuid of class App\\\\Core\\\\Shared\\\\Domain\\\\ValueObject\\\\ProductId constructor expects string, mixed given\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Product.php
+			path: src/Core/ShowOneProduct/Infrastructure/SingleProductDataWrapper.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Product\\:\\:\\$stock is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$data of class App\\\\Core\\\\ShowOneProduct\\\\Infrastructure\\\\SingleProductDataWrapper constructor expects array\\<string, mixed\\>, mixed given\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Product.php
+			path: src/Core/ShowOneProduct/Infrastructure/SingleProductRepository.php
 
 		-
-			message: "#^Property App\\\\Write\\\\Product\\\\Shared\\\\Domain\\\\Entity\\\\Stock\\:\\:\\$name is never read, only written\\.$#"
+			message: "#^Property App\\\\Tests\\\\Core\\\\AddProduct\\\\Application\\\\AddProductHandlerTest\\:\\:\\$handler \\(App\\\\Core\\\\AddProduct\\\\Application\\\\AddProductHandler\\) does not accept object\\.$#"
 			count: 1
-			path: src/Write/Product/Shared/Domain/Entity/Stock.php
+			path: tests/Core/AddProduct/Application/AddProductHandlerTest.php
 
 		-
-			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getWriteEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
+			message: "#^Parameter \\#1 \\$productValidationRepository of class App\\\\Core\\\\Shared\\\\Domain\\\\Validator\\\\ProductValidator constructor expects App\\\\Core\\\\Shared\\\\Application\\\\Repository\\\\ProductValidationRepositoryInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 2
+			path: tests/Core/Shared/Domain/Validator/ProductValidatorTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$queue of class App\\\\Core\\\\Shared\\\\Infrastructure\\\\Event\\\\EventDispatcher constructor expects App\\\\Core\\\\Shared\\\\Infrastructure\\\\Event\\\\EventQueueInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
+			count: 1
+			path: tests/Core/Shared/Infrastructure/Event/EventDispatcherTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Core\\\\Shared\\\\Infrastructure\\\\Repository\\\\StockRepositoryTest\\:\\:\\$repository \\(App\\\\Core\\\\Shared\\\\Application\\\\Repository\\\\StockRepositoryInterface\\) does not accept object\\.$#"
+			count: 1
+			path: tests/Core/Shared/Infrastructure/Repository/StockRepositoryTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$stockBuilder of class App\\\\Tests\\\\Core\\\\ShowOneProduct\\\\ShowOneProductTestData constructor expects App\\\\Tests\\\\DataBuilder\\\\TestStockBuilder, object given\\.$#"
+			count: 1
+			path: tests/Core/ShowOneProduct/Application/ShowOneProductHandlerTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Core\\\\ShowOneProduct\\\\Application\\\\ShowOneProductHandlerTest\\:\\:\\$handler \\(App\\\\Core\\\\ShowOneProduct\\\\Application\\\\ShowOneProductHandler\\) does not accept object\\.$#"
+			count: 1
+			path: tests/Core/ShowOneProduct/Application/ShowOneProductHandlerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$stockBuilder of class App\\\\Tests\\\\Core\\\\ShowOneProduct\\\\ShowOneProductTestData constructor expects App\\\\Tests\\\\DataBuilder\\\\TestStockBuilder, object given\\.$#"
+			count: 1
+			path: tests/Core/ShowOneProduct/Presentation/ShowOneProductControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\IntegrationTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
 			count: 1
 			path: tests/IntegrationTestCase.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Read\\\\Product\\\\ShowOne\\\\Application\\\\ShowOneProductHandlerTest\\:\\:\\$handler \\(App\\\\Read\\\\Product\\\\ShowOne\\\\Application\\\\ShowOneProductHandler\\) does not accept object\\.$#"
-			count: 1
-			path: tests/Read/Product/ShowOne/Application/ShowOneProductHandlerTest.php
 
 		-
 			message: "#^Method App\\\\Tests\\\\SmokeTestCase\\:\\:getEntityManager\\(\\) should return Doctrine\\\\ORM\\\\EntityManagerInterface but returns object\\.$#"
@@ -96,16 +121,6 @@ parameters:
 			path: tests/SmokeTestCase.php
 
 		-
-			message: "#^Property App\\\\Tests\\\\Write\\\\Product\\\\Add\\\\Application\\\\AddProductHandlerTest\\:\\:\\$handler \\(App\\\\Write\\\\Product\\\\Add\\\\Application\\\\AddProductHandler\\) does not accept object\\.$#"
+			message: "#^Property App\\\\Tests\\\\Stub\\\\EventStoreStub\\:\\:\\$events is never read, only written\\.$#"
 			count: 1
-			path: tests/Write/Product/Add/Application/AddProductHandlerTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$productValidationRepository of class App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Validator\\\\ProductValidator constructor expects App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Repository\\\\ProductValidationRepositoryInterface, PHPUnit\\\\Framework\\\\MockObject\\\\MockObject given\\.$#"
-			count: 2
-			path: tests/Write/Product/Shared/Application/Validator/ProductValidatorTest.php
-
-		-
-			message: "#^Property App\\\\Tests\\\\Write\\\\Product\\\\Shared\\\\Infrastructure\\\\Repository\\\\StockRepositoryTest\\:\\:\\$repository \\(App\\\\Write\\\\Product\\\\Shared\\\\Application\\\\Repository\\\\StockRepositoryInterface\\) does not accept object\\.$#"
-			count: 1
-			path: tests/Write/Product/Shared/Infrastructure/Repository/StockRepositoryTest.php
+			path: tests/Stub/EventStoreStub.php

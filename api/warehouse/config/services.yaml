@@ -13,12 +13,6 @@ services:
   App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper:
     factory: [ 'App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create' ]
 
-  App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapper:
-    factory: [ 'App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapperFactory', 'create' ]
-
-  App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapper:
-    factory: [ 'App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapperFactory', 'create' ]
-
 when@test:
   services:
     _defaults:
@@ -26,7 +20,8 @@ when@test:
       autoconfigure: true
       public: true
 
-    App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapper:
-      factory: [ 'App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerWrapperFactory', 'create' ]
-    App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapper:
-      factory: [ 'App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerWrapperFactory', 'create' ]
+    App\Tests\Stub\:
+      resource: '../tests/Stub/'
+
+    App\Tests\DataBuilder\:
+      resource: '../tests/DataBuilder/'

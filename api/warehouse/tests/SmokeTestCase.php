@@ -4,8 +4,6 @@
 
 namespace App\Tests;
 
-use App\Read\Shared\Infrastructure\Doctrine\ReadEntityManagerInterface;
-use App\Write\Shared\Infrastructure\Doctrine\WriteEntityManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -50,33 +48,18 @@ class SmokeTestCase extends WebTestCase
         return $this->client->getResponse();
     }
 
-    protected function beginWriteEMTransaction(): void
+    protected function getEntityManager(): EntityManagerInterface
     {
-        $this->getWriteEntityManager()->beginTransaction();
+        return self::getContainer()->get(EntityManagerInterface::class);
     }
 
-    protected function getWriteEntityManager(): EntityManagerInterface
+    protected function beginTransaction(): void
     {
-        return self::getContainer()->get(WriteEntityManagerInterface::class);
+        $this->getEntityManager()->beginTransaction();
     }
 
-    protected function rollbackWriteEMTransaction(): void
+    protected function rollbackTransaction(): void
     {
-        $this->getWriteEntityManager()->rollback();
-    }
-
-    protected function beginReadConnectionTransaction(): void
-    {
-        $this->getReadEntityManager()->beginTransaction();
-    }
-
-    protected function getReadEntityManager(): ReadEntityManagerInterface
-    {
-        return self::getContainer()->get(ReadEntityManagerInterface::class);
-    }
-
-    protected function rollbackReadConnectionTransaction(): void
-    {
-        $this->getReadEntityManager()->rollback();
+        $this->getEntityManager()->rollback();
     }
 }

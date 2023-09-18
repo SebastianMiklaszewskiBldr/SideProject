@@ -1,9 +1,9 @@
 api.products.add:
-  controller: App\Write\Product\Add\Presentation\AddProductController::add
+  controller: App\Core\AddProduct\Presentation\AddProductController::add
   methods: POST
   path: /api/stocks/{stockId}/products
 
 api.products.show:
-  controller: App\Read\Product\ShowOne\Presentation\ShowOneProductController::show
+  controller: App\Core\ShowOneProduct\Presentation\ShowOneProductController::show
   methods: GET
   path: /api/products/{productId}
