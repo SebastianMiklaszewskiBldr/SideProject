@@ -10,8 +10,11 @@ use App\Core\Shared\Domain\ValueObject\StockName;
 final readonly class SingleProductDataWrapper
 {
     public const ID_FIELD = 'id';
+
     public const NAME_FIELD = 'name';
+
     public const STOCK_NAME_FIELD = 'stock';
+
     public const AMOUNT_FIELD = 'amount';
 
     /**

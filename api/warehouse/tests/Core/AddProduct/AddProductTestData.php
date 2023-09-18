@@ -46,6 +46,17 @@ final readonly class AddProductTestData
         ];
     }
 
+    public function getCommand(): AddProductCommand
+    {
+        return new AddProductCommand(
+            $this->getStockId(),
+            $this->getProductId(),
+            $this->getProductName(),
+            $this->getCategory(),
+            $this->getAmount()
+        );
+    }
+
     private function getProductId(): ProductId
     {
         return new ProductId('3260BFA7-DD48-41FE-8A7D-0A518822A8E7');
@@ -64,16 +75,5 @@ final readonly class AddProductTestData
     private function getAmount(): Amount
     {
         return new Amount(1);
-    }
-
-    public function getCommand(): AddProductCommand
-    {
-        return new AddProductCommand(
-            $this->getStockId(),
-            $this->getProductId(),
-            $this->getProductName(),
-            $this->getCategory(),
-            $this->getAmount()
-        );
     }
 }

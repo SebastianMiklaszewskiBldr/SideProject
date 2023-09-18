@@ -7,8 +7,11 @@ use JsonSerializable;
 final readonly class SingleProductView implements JsonSerializable
 {
     private const ID_FIELD = 'id';
+
     private const NAME_FIELD = 'name';
+
     private const STOCK_NAME_FIELD = 'stock';
+
     private const AMOUNT_FIELD = 'amount';
 
     public function __construct(

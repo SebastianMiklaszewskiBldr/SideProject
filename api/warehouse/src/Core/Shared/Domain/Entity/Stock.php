@@ -42,11 +42,6 @@ final class Stock
         $this->products = new ArrayCollection([]);
     }
 
-    public static function createDefault(StockId $id): self
-    {
-        return new self($id, StockName::default());
-    }
-
     /**
      * @throws CannotAddProductToStockException
      */
@@ -70,6 +65,11 @@ final class Stock
         $eventStore->pushEvent(
             new ProductAdded($productId->uuid, $productName->name, $this->id, $this->name, $amount->amount)
         );
+    }
+
+    public static function createDefault(StockId $id): self
+    {
+        return new self($id, StockName::default());
     }
 
     private function getId(): StockId
