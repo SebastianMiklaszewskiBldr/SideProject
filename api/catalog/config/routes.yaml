@@ -1,0 +1,4 @@
+api.products.list:
+  controller: App\Read\ListProducts\Presentation\ListProductsController::list
+  methods: GET
+  path: /api/stocks/{stockId}/products
