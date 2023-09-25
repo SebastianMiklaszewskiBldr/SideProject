@@ -3,6 +3,9 @@
 namespace App\Tests\Read\ListProducts;
 
 use App\Read\ListProducts\Application\ProductsListSortBy;
+use App\Read\ListProducts\Presentation\ListProductsRequest;
+use App\Shared\Domain\ValueObject\Limit;
+use App\Shared\Domain\ValueObject\Offset;
 use App\Shared\Domain\ValueObject\SortOrder;
 use App\Shared\Domain\ValueObject\StockId;
 
@@ -12,8 +15,10 @@ final readonly class ListProductsTestData
     {
         return [
             'stockId' => $this->getStockId()->uuid,
-            'sortOrder' => $this->getSortOrder()->name,
-            'sortBy' => $this->getSortBy()->name,
+            ListProductsRequest::SORT_ORDER_PROPERTY => $this->getSortOrder()->value,
+            ListProductsRequest::SORT_BY_PROPERTY => $this->getSortBy()->value,
+            ListProductsRequest::PAGINATION_OFFSET_PROPERTY => $this->getOffset()->offset,
+            ListProductsRequest::PAGINATION_LIMIT_PROPERTY => $this->getLimit()->limit,
         ];
     }
 
@@ -30,5 +35,15 @@ final readonly class ListProductsTestData
     private function getSortBy(): ProductsListSortBy
     {
         return ProductsListSortBy::NAME;
+    }
+
+    private function getOffset(): Offset
+    {
+        return new Offset(0);
+    }
+
+    private function getLimit(): Limit
+    {
+        return new Limit(10);
     }
 }

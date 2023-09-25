@@ -2,8 +2,8 @@
 
 namespace App\Shared\Domain\ValueObject;
 
-enum SortOrder
+enum SortOrder: string
 {
-    case ASC;
-    case DESC;
+    case ASC = 'ASC';
+    case DESC = 'DESC';
 }
