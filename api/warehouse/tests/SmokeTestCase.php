@@ -43,7 +43,7 @@ class SmokeTestCase extends WebTestCase
     {
         $url = $this->router->generate($url->value, $urlParams);
 
-        $this->client->request(TestHttpMethod::GET->value, $url);
+        $this->client->request(TestHttpMethod::GET->name, $url);
 
         return $this->client->getResponse();
     }

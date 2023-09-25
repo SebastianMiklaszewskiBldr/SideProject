@@ -16,7 +16,7 @@ final class ListProductsControllerTest extends SmokeTestCase
     {
         $response = $this->sendGetRequest(TestUrlName::LIST_PRODUCTS, $this->testData->getRequestParams());
 
-        self::assertEquals(TestHttpStatusCode::SUCCESSFUL, $response->getStatusCode());
+        self::assertEquals(TestHttpStatusCode::SUCCESSFUL->value, $response->getStatusCode());
     }
 
     protected function setUp(): void

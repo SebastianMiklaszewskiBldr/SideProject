@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Router;
 
-final class SmokeTestCase extends WebTestCase
+class SmokeTestCase extends WebTestCase
 {
     private KernelBrowser $client;
     private Router $router;
@@ -27,7 +27,7 @@ final class SmokeTestCase extends WebTestCase
     {
         $url = $this->router->generate($url->value, $urlParams);
 
-        $this->client->request(TestHttpMethod::GET->value, $url);
+        $this->client->request(TestHttpMethod::GET->name, $url);
 
         return $this->client->getResponse();
     }
