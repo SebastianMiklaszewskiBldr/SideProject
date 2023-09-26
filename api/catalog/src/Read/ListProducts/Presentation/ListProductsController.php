@@ -14,8 +14,7 @@ final class ListProductsController extends AbstractController
     public function __construct(
         private readonly ListProductsRequestMapper $requestMapper,
         private readonly ListProductsHandler $handler,
-    )
-    {
+    ) {
     }
 
     public function list(string $stockId, Request $request): JsonResponse
@@ -26,7 +25,8 @@ final class ListProductsController extends AbstractController
             $this->handler->handle(
                 new ListProductsQuery(
                     new StockId($stockId),
-                    $mappedRequest->sort, $mappedRequest->paginator
+                    $mappedRequest->sort,
+                    $mappedRequest->paginator
                 )
             )
         );

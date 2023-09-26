@@ -28,7 +28,7 @@ final readonly class ListProductsRequestMapper
 
         $violations = $this->validator->validate($mappedRequest);
 
-        if(0 !== $violations->count()) {
+        if (0 !== $violations->count()) {
             $this->throwException($violations);
         }
 
@@ -45,14 +45,16 @@ final readonly class ListProductsRequestMapper
         $sortBy = ProductsListSortBy::tryFrom($request->query->get(ListProductsRequest::SORT_BY_PROPERTY));
         $sortOrder = SortOrder::tryFrom($request->query->get(ListProductsRequest::SORT_ORDER_PROPERTY));
 
-        if(null === $sortBy || null === $sortOrder) {
+        if (null === $sortBy || null === $sortOrder) {
             throw new BadRequestHttpException(
                 sprintf(
                     'Invalid sort value. Available sort values [sortOrder => ASC|DESC, sortBy => %s',
                     implode(
                         '|',
-                        array_map(static fn(ProductsListSortBy $case): string => $case->value,
-                            ProductsListSortBy::cases())
+                        array_map(
+                            static fn(ProductsListSortBy $case): string => $case->value,
+                            ProductsListSortBy::cases()
+                        )
                     )
                 )
             );

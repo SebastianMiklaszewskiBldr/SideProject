@@ -182,5 +182,4 @@ final readonly class ListProductsTestData
     {
         return new Quantity(3);
     }
-
 }

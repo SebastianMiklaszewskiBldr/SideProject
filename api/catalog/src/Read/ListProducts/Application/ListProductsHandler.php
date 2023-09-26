@@ -7,8 +7,7 @@ final readonly class ListProductsHandler
     public function __construct(
         private AvailableProductsProviderInterface $availableProductsProvider,
         private AvailableProductViewMapper $mapper,
-    )
-    {
+    ) {
     }
 
     /**

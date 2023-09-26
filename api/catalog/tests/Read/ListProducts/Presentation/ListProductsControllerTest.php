@@ -48,7 +48,7 @@ final class ListProductsControllerTest extends SmokeTestCase
             'sortOrder' => 'test',
             'sortBy' => 'name',
             'offset' => -1,
-            'limit' => 10
+            'limit' => 10,
         ]);
 
         self::assertEquals(TestHttpStatusCode::BAD_REQUEST->value, $response->getStatusCode());
@@ -61,7 +61,7 @@ final class ListProductsControllerTest extends SmokeTestCase
             'sortOrder' => 'test',
             'sortBy' => 'name',
             'offset' => 0,
-            'limit' => 0
+            'limit' => 0,
         ]);
 
         self::assertEquals(TestHttpStatusCode::BAD_REQUEST->value, $response->getStatusCode());

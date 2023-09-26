@@ -9,7 +9,6 @@ use App\Shared\Domain\ValueObject\StockId;
 
 interface AvailableProductsProviderInterface
 {
-
     /**
      * @return array<AvailableProduct>
      */

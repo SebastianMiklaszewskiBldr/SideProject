@@ -12,7 +12,6 @@ final readonly class AvailableProduct
         public ProductId $productId,
         public ProductName $productName,
         public Quantity $quantity,
-    )
-    {
+    ) {
     }
 }
