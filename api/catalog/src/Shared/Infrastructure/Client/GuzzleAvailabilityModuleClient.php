@@ -3,6 +3,7 @@
 namespace App\Shared\Infrastructure\Client;
 
 use App\Shared\Application\Client\AvailabilityModuleClientInterface;
+use App\Shared\Application\Client\AvailabilityModuleClientUri;
 use App\Shared\Application\Client\HttpClientInterface;
 use App\Shared\Application\Client\UrlFactoryInterface;
 use App\Shared\Domain\ValueObject\Paginator;
@@ -17,8 +18,17 @@ final readonly class GuzzleAvailabilityModuleClient implements AvailabilityModul
 
     public function getSortedPageOfAvailableProducts(StockId $stockId, Sort $sort, Paginator $paginator): string
     {
-        $url = $this->urlFactory->createUrl();
+        $url = $this->urlFactory->createUrl(
+            AvailabilityModuleClientUri::GET_SORTED_PAGE_OF_AVAILABLE,
+            ['stockId' => $stockId->uuid],
+            [
+                'sortBy' => $sort->sortBy->getSortBy(),
+                'sortOrder' => $sort->sortOrder->value,
+                'offset' => $paginator->offset->offset,
+                'limit' => $paginator->limit->limit
+            ]
+        );
 
-        return $this->client->sendGetRequest();
+        return $this->client->sendGetRequest($url)->getBody();
     }
 }

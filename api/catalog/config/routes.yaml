@@ -2,3 +2,9 @@ api.products.list:
   controller: App\Read\ListProducts\Presentation\ListProductsController::list
   methods: GET
   path: /api/stocks/{stockId}/products
+
+when@test:
+  test.api.available.products.list.valid:
+    controller: App\Tests\TestEndpoints\GetSortedPageOfAvailableProductsTestController::getValidResponse
+    methods: GET
+    path: /api/stocks/{stockId}/products/available
