@@ -41,3 +41,15 @@ services:
     container_name: shop_api_catalog
     volumes:
       - ./api/catalog:/var/www/html
+
+  availability_api:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: api.availability.Dockerfile
+      args:
+        - IMAGE_TAG=${PHP_IMAGE_TAG}
+    container_name: shop_api_availability
+    volumes:
+      - ./api/availability:/var/www/html
