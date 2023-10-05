@@ -9,8 +9,8 @@ use App\Shared\Domain\ValueObject\Quantity;
 final readonly class AvailableProduct
 {
     public function __construct(
-        public ProductId $productId,
-        public ProductName $productName,
+        public ProductId $id,
+        public ProductName $name,
         public Quantity $quantity,
     ) {
     }

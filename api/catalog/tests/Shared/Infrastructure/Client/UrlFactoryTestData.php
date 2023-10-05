@@ -4,12 +4,13 @@ namespace App\Tests\Shared\Infrastructure\Client;
 
 use App\Shared\Application\Client\UriInterface;
 use App\Shared\Application\Client\Url;
+use App\Shared\Infrastructure\Client\BaseUrl;
 
 final readonly class UrlFactoryTestData
 {
-    public function getBaseUrl(): string
+    public function getBaseUrl(): BaseUrl
     {
-        return 'http://base.com';
+        return new BaseUrl('http://base.com');
     }
 
     public function getUriWithoutParams(): TestUri
@@ -19,12 +20,12 @@ final readonly class UrlFactoryTestData
 
     public function getExpectedUrlWithoutAnyParams(): Url
     {
-        return new Url(sprintf('%s%s', $this->getBaseUrl(), $this->getUriWithoutParams()->getUri()));
+        return new Url(sprintf('%s%s', $this->getBaseUrl()->baseUrl, $this->getUriWithoutParams()->getUri()));
     }
 
     public function getExpectedUrlWithUriParams(): Url
     {
-        return new Url(sprintf('%s%s', $this->getBaseUrl(), $this->getPreparedUriParamsString()));
+        return new Url(sprintf('%s%s', $this->getBaseUrl()->baseUrl, $this->getPreparedUriParamsString()));
     }
 
     public function getUriWithUriParams(): UriInterface
@@ -56,7 +57,7 @@ final readonly class UrlFactoryTestData
         return new Url(
             sprintf(
                 '%s%s%s',
-                $this->getBaseUrl(),
+                $this->getBaseUrl()->baseUrl,
                 $this->getUriWithoutParams()->getUri(),
                 $this->getPreparedQueryParamsString()
             )
@@ -69,7 +70,7 @@ final readonly class UrlFactoryTestData
             new Url(
                 sprintf(
                     '%s%s%s',
-                    $this->getBaseUrl(),
+                    $this->getBaseUrl()->baseUrl,
                     $this->getPreparedUriParamsString(),
                     $this->getPreparedQueryParamsString()
                 )

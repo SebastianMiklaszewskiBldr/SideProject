@@ -14,6 +14,7 @@ final class UrlFactoryTest extends TestCase
     public function test_CreateUrl_ShouldCreateUrl_WhenNoUriOrQueryParamsProvided(): void
     {
         $url = $this->urlFactory->createUrl(
+            baseUrl: $this->testData->getBaseUrl(),
             uri: $this->testData->getUriWithoutParams(),
             uriParams: [],
             queryParams: []
@@ -25,6 +26,7 @@ final class UrlFactoryTest extends TestCase
     public function test_CreateUrl_ShouldCreateUrlWithUriParams_WhenUriParamsProvided(): void
     {
         $url = $this->urlFactory->createUrl(
+            baseUrl: $this->testData->getBaseUrl(),
             uri: $this->testData->getUriWithUriParams(),
             uriParams: $this->testData->getUriParams(),
             queryParams: []
@@ -36,6 +38,7 @@ final class UrlFactoryTest extends TestCase
     public function test_CreateUrl_ShouldCreateUrlWithQueryParams_WhenQueryParamsProvided(): void
     {
         $url = $this->urlFactory->createUrl(
+            baseUrl: $this->testData->getBaseUrl(),
             uri: $this->testData->getUriWithoutParams(),
             uriParams: [],
             queryParams: $this->testData->getQueryParams()
@@ -47,9 +50,10 @@ final class UrlFactoryTest extends TestCase
     public function test_CreateUrl_ShouldCreateUrlWithUriAndQueryParams_WhenUriAndUrlParamsProvided(): void
     {
         $url = $this->urlFactory->createUrl(
-            $this->testData->getUriWithUriParams(),
-            $this->testData->getUriParams(),
-            $this->testData->getQueryParams()
+            baseUrl: $this->testData->getBaseUrl(),
+            uri: $this->testData->getUriWithUriParams(),
+            uriParams: $this->testData->getUriParams(),
+            queryParams: $this->testData->getQueryParams()
         );
 
         self::assertEquals($this->testData->getExpectedUrlWithUriAndQueryParams()->url, $url->url);

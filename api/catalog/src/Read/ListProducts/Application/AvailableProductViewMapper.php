@@ -15,8 +15,8 @@ final readonly class AvailableProductViewMapper
         return array_map(
             static fn(AvailableProduct $availableProduct): AvailableProductView => new
             AvailableProductView(
-                $availableProduct->productId->uuid,
-                $availableProduct->productName->name,
+                $availableProduct->id->uuid,
+                $availableProduct->name->name,
                 $availableProduct->quantity->quantity
             ),
             $availableProducts

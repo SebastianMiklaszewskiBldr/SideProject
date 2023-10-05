@@ -2,6 +2,9 @@
 
 namespace App\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,5 +33,16 @@ class SmokeTestCase extends WebTestCase
         $this->client->request(TestHttpMethod::GET->name, $url);
 
         return $this->client->getResponse();
+    }
+
+    /**
+     * @param array<\GuzzleHttp\Psr7\Response> $responses
+     */
+    protected function mockGuzzleResponses(array $responses): Client
+    {
+        $guzzleMockHandler = new MockHandler($responses);
+        $handlerStack = HandlerStack::create($guzzleMockHandler);
+
+        return new Client(['handler' => $handlerStack]);
     }
 }

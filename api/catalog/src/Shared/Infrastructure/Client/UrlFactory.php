@@ -15,9 +15,10 @@ final readonly class UrlFactory implements UrlFactoryInterface
     /**
      * @inheritDoc
      */
-    public function createUrl(UriInterface $uri, array $uriParams, array $queryParams): Url
+    public function createUrl(BaseUrl $baseUrl, UriInterface $uri, array $uriParams, array $queryParams): Url
     {
         return $this->urlBuilder
+            ->init($baseUrl)
             ->addUri($uri)
             ->setUriParams($uriParams)
             ->setQueryParams($queryParams)

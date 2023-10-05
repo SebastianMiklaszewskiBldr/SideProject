@@ -1,0 +1,17 @@
+[
+  {
+    "id": "D4C1F8D5-A165-4AD9-A1EB-23F25AC3DC5D",
+    "name": "product 1",
+    "quantity": 1
+  },
+  {
+    "id": "5C0AE589-84CC-4F7F-8003-ABAFDA4D9CED",
+    "name": "product 2",
+    "quantity": 2
+  },
+  {
+    "id": "FABCEA87-3ACD-4063-BA73-451EF1707858",
+    "name": "product 3",
+    "quantity": 3
+  }
+]

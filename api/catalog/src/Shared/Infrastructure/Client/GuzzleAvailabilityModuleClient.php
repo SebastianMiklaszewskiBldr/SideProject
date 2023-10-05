@@ -12,20 +12,24 @@ use App\Shared\Domain\ValueObject\StockId;
 
 final readonly class GuzzleAvailabilityModuleClient implements AvailabilityModuleClientInterface
 {
-    public function __construct(private HttpClientInterface $client, private UrlFactoryInterface $urlFactory)
-    {
+    public function __construct(
+        private HttpClientInterface $client,
+        private UrlFactoryInterface $urlFactory,
+        private BaseUrl $baseUrl,
+    ) {
     }
 
     public function getSortedPageOfAvailableProducts(StockId $stockId, Sort $sort, Paginator $paginator): string
     {
         $url = $this->urlFactory->createUrl(
+            $this->baseUrl,
             AvailabilityModuleClientUri::GET_SORTED_PAGE_OF_AVAILABLE,
             ['stockId' => $stockId->uuid],
             [
                 'sortBy' => $sort->sortBy->getSortBy(),
                 'sortOrder' => $sort->sortOrder->value,
                 'offset' => $paginator->offset->offset,
-                'limit' => $paginator->limit->limit
+                'limit' => $paginator->limit->limit,
             ]
         );
 

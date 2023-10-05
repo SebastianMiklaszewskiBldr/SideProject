@@ -1,21 +1,54 @@
-parameters:
+when@dev:
+  parameters:
+    module.availability.host: '%env(DEV_AVAILABILITY_MODULE_HOST)%'
 
-services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
+  services:
+    _defaults:
+      autowire: true
+      autoconfigure: true
 
-  App\:
-    resource: '../src/'
-    exclude:
-      - '../src/Kernel.php'
+    App\:
+      resource: '../src/'
+      exclude:
+        - '../src/Kernel.php'
 
-  App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper:
-    factory: [ 'App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create' ]
+    App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper:
+      factory: [ 'App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create' ]
 
-  App\Shared\Infrastructure\Client\GuzzleHttpClient:
-    factory: [ 'App\Shared\Infrastructure\Client\GuzzleHttpClientFactory', 'create' ]
+    App\Shared\Infrastructure\Client\GuzzleHttpClient:
+      factory: [ 'App\Shared\Infrastructure\Client\GuzzleHttpClientFactory', 'create' ]
 
-  App\Shared\Infrastructure\Client\UrlBuilder:
-    arguments:
-      - $base: 'http://localhost'
+    App\Shared\Infrastructure\Client\GuzzleAvailabilityModuleClient:
+      factory: [ 'App\Shared\Infrastructure\Client\GuzzleAvailabilityModuleClientFactory', 'create' ]
+      arguments:
+        $baseUrl: '%module.availability.host%'
+        $httpClient: '@App\Shared\Application\Client\HttpClientInterface'
+
+
+when@test:
+  parameters:
+    module.availability.host: '%env(TEST_AVAILABILITY_MODULE_HOST)%'
+
+  services:
+    _defaults:
+      autowire: true
+      autoconfigure: true
+
+    App\:
+      resource: '../src/'
+      exclude:
+        - '../src/Kernel.php'
+
+    App\Shared\Infrastructure\Validator\SymfonyValidatorWrapper:
+      factory: [ 'App\Shared\Infrastructure\Validator\SymfonyValidatorWrapperFactory', 'create' ]
+
+    App\Shared\Infrastructure\Client\GuzzleHttpClient:
+      factory: [ 'App\Shared\Infrastructure\Client\GuzzleHttpClientFactory', 'create' ]
+
+    App\Shared\Infrastructure\Client\GuzzleAvailabilityModuleClient:
+      factory: [ 'App\Shared\Infrastructure\Client\GuzzleAvailabilityModuleClientFactory', 'create' ]
+      arguments:
+         $baseUrl: '%module.availability.host%'
+
+    GuzzleHttp\Client:
+      public: true

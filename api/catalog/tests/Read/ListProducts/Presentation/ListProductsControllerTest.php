@@ -3,10 +3,12 @@
 namespace App\Tests\Read\ListProducts\Presentation;
 
 use App\Shared\Domain\ValueObject\SortOrder;
+use App\Shared\Infrastructure\Client\GuzzleHttpClient;
 use App\Tests\Read\ListProducts\ListProductsTestData;
 use App\Tests\SmokeTestCase;
 use App\Tests\TestHttpStatusCode;
 use App\Tests\TestUrlName;
+use GuzzleHttp\Psr7\Response;
 
 final class ListProductsControllerTest extends SmokeTestCase
 {
@@ -71,6 +73,14 @@ final class ListProductsControllerTest extends SmokeTestCase
     {
         parent::setUp();
 
+        $mockedGuzzleClient = $this->mockGuzzleResponses(
+            [
+                new Response(200, [], file_get_contents(
+                    sprintf('%s%s%s', __DIR__, DIRECTORY_SEPARATOR, '/../ListProductsHttpClientResponse.json')
+                )),
+            ]
+        );
+        self::getContainer()->set(GuzzleHttpClient::class, new GuzzleHttpClient($mockedGuzzleClient));
         $this->testData = new ListProductsTestData();
     }
 }

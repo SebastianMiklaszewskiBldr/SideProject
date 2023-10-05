@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 final readonly class GuzzleHttpClientFactory
 {
-    public static function create(): Client
+    public static function create(): GuzzleHttpClient
     {
-        return new Client();
+        return new GuzzleHttpClient(new Client());
     }
 }

@@ -5,7 +5,6 @@ namespace App\Tests\Read\ListProducts;
 use App\Read\ListProducts\Application\AvailableProductView;
 use App\Read\ListProducts\Application\ListProductsQuery;
 use App\Read\ListProducts\Application\ProductsListSortBy;
-use App\Read\ListProducts\Domain\AvailableProduct;
 use App\Read\ListProducts\Presentation\ListProductsRequest;
 use App\Shared\Domain\ValueObject\Limit;
 use App\Shared\Domain\ValueObject\Offset;
@@ -39,28 +38,11 @@ final readonly class ListProductsTestData
         ];
     }
 
-    /**
-     * @return array<int, AvailableProduct>
-     */
-    public function getArrayOfAvailableProducts(): array
+    public function getSerializedArrayOfAvailableProducts(): string
     {
-        return [
-            new AvailableProduct(
-                $this->getProductOneId(),
-                $this->getProductOneName(),
-                $this->getProductOneQuantity()
-            ),
-            new AvailableProduct(
-                $this->getProductTwoId(),
-                $this->getProductTwoName(),
-                $this->getProductTwoQuantity()
-            ),
-            new AvailableProduct(
-                $this->getProductThreeId(),
-                $this->getProductThreeName(),
-                $this->getProductThreeQuantity()
-            ),
-        ];
+        return file_get_contents(
+            sprintf('%s%s%s', __DIR__, DIRECTORY_SEPARATOR, 'ListProductsHttpClientResponse.json')
+        );
     }
 
     /**
@@ -87,12 +69,9 @@ final readonly class ListProductsTestData
         ];
     }
 
-    /**
-     * @return array<int, AvailableProductView>
-     */
-    public function getEmptyArrayOfAvailableProducts(): array
+    public function getEmptyArrayOfAvailableProducts(): string
     {
-        return [];
+        return '[]';
     }
 
     /**
