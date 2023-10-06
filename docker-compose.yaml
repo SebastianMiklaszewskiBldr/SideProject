@@ -53,3 +53,13 @@ services:
     container_name: shop_api_availability
     volumes:
       - ./api/availability:/var/www/html
+
+  availaibility_redis:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: redis.availability.Dockerfile
+      args:
+        - IMAGE_TAG=${REDIS_IMAGE_TAG}
+    container_name: shop_redis_availability
