@@ -9,6 +9,7 @@ RUN apk update \
     && apk add --no-cache postgresql-dev \
     && docker-php-ext-install pdo_pgsql pgsql
 
+RUN pecl install redis && docker-php-ext-enable redis
 RUN pecl install xdebug-3.2.1 && docker-php-ext-enable xdebug
 
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
