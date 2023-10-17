@@ -22,3 +22,9 @@ when@test:
             factory: [ 'App\Shared\Infrastructure\Cache\RedisAdapterFactory', 'create' ]
             arguments: [ '%app.redis.client.host%','%app.redis.client.port%','@App\Shared\Infrastructure\Cache\CacheExpirationFactory' ]
             public: true
+
+        App\AddNewAvailableProduct\Application\AddNewAvailableProductHandler:
+            public: true
+            arguments:
+                - '@App\Shared\Application\Model\ProductFactory'
+                - '@App\Shared\Application\Repository\WriteRepositoryInterface'
