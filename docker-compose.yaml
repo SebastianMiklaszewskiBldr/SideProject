@@ -63,3 +63,13 @@ services:
       args:
         - IMAGE_TAG=${REDIS_IMAGE_TAG}
     container_name: shop_redis_availability
+
+  rabbitmq:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: rabbitmq.Dockerfile
+      args:
+        - IMAGE_TAG=${RABBITMQ_IMAGE_TAG}
+    container_name: shop_rabbitmq
