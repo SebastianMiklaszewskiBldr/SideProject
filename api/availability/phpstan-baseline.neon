@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property App\\\\Tests\\\\AddNewAvailableProduct\\\\Application\\\\AddNewAvailableProductHandlerTest\\:\\:\\$handler \\(App\\\\AddNewAvailableProduct\\\\Application\\\\AddNewAvailableProductHandler\\) does not accept object\\.$#"
+			count: 1
+			path: tests/AddNewAvailableProduct/Application/AddNewAvailableProductHandlerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$host of method Redis\\:\\:connect\\(\\) expects string, array\\|bool\\|float\\|int\\|string\\|UnitEnum\\|null given\\.$#"
+			count: 1
+			path: tests/IntegrationTestCase.php
+
+		-
+			message: "#^Parameter \\#2 \\$port of method Redis\\:\\:connect\\(\\) expects int, array\\|bool\\|float\\|int\\|string\\|UnitEnum\\|null given\\.$#"
+			count: 1
+			path: tests/IntegrationTestCase.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Shared\\\\Infrastructure\\\\Cache\\\\RedisAdapterTest\\:\\:\\$redisAdapter \\(App\\\\Shared\\\\Infrastructure\\\\Cache\\\\RedisAdapter\\) does not accept object\\.$#"
+			count: 1
+			path: tests/Shared/Infrastructure/Cache/RedisAdapterTest.php

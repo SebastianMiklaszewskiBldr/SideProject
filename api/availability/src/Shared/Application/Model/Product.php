@@ -25,9 +25,9 @@ final readonly class Product implements CacheableInterface
     public function jsonSerialize(): array
     {
         return [
-            self::PRODUCT_ID_JSON_KEY => $this->id,
-            self::PRODUCT_NAME_JSON_KEY => $this->name,
-            self::STOCK_ID_JSON_KEY => $this->stockId,
+            self::PRODUCT_ID_JSON_KEY => $this->id->uuid,
+            self::PRODUCT_NAME_JSON_KEY => $this->name->name,
+            self::STOCK_ID_JSON_KEY => $this->stockId->uuid,
         ];
     }
 }
