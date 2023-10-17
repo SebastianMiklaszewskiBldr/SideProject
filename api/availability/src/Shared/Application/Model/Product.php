@@ -10,7 +10,9 @@ use App\Shared\Domain\ValueObject\StockId;
 final readonly class Product implements CacheableInterface
 {
     public const PRODUCT_ID_JSON_KEY = 'id';
+
     public const PRODUCT_NAME_JSON_KEY = 'name';
+
     public const STOCK_ID_JSON_KEY = 'stockId';
 
     public function __construct(public ProductId $id, public ProductName $name, public StockId $stockId)

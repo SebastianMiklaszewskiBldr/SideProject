@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\StockId;
 final readonly class CacheKey
 {
     private const STOCK_NAMESPACE = 'stock';
+
     private const PRODUCT_NAMESPACE = 'product';
 
     public function __construct(public string $key)

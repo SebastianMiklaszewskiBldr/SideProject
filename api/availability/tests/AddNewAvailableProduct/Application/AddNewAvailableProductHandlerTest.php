@@ -34,5 +34,4 @@ final class AddNewAvailableProductHandlerTest extends IntegrationTestCase
         $this->handler = self::getContainer()->get(AddNewAvailableProductHandler::class);
         $this->symfonyRedisAdapter = $this->getSymfonyRedisAdapter();
     }
-
 }
