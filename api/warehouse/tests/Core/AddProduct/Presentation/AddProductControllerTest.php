@@ -2,10 +2,12 @@
 
 namespace App\Tests\Core\AddProduct\Presentation;
 
+use App\Core\Shared\Domain\Event\ProductAdded;
 use App\Tests\Core\AddProduct\AddProductTestData;
 use App\Tests\SmokeTestCase;
 use App\Tests\TestHttpStatusCode;
 use App\Tests\TestUrlName;
+use Symfony\Component\Messenger\Envelope;
 
 final class AddProductControllerTest extends SmokeTestCase
 {
@@ -24,6 +26,7 @@ final class AddProductControllerTest extends SmokeTestCase
         );
 
         self::assertEquals(TestHttpStatusCode::RESOURCE_CREATED->value, $response->getStatusCode());
+        $this->assertDispatchedEvents();
     }
 
     protected function setUp(): void
@@ -40,5 +43,14 @@ final class AddProductControllerTest extends SmokeTestCase
         $this->rollbackTransaction();
 
         parent::tearDown();
+    }
+
+    private function assertDispatchedEvents(): void
+    {
+        $dispatchedEvents = $this->getMessengerTransport('events')->getSent();
+        self::assertCount(1, $dispatchedEvents);
+        /** @var Envelope $dispatchedEvent */
+        $dispatchedEvent = $dispatchedEvents[0];
+        self::assertInstanceOf(ProductAdded::class, $dispatchedEvent->getMessage());
     }
 }

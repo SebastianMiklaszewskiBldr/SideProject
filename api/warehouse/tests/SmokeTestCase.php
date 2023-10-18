@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\Transport\InMemory\InMemoryTransport;
 use Symfony\Component\Routing\Router;
 
 class SmokeTestCase extends WebTestCase
@@ -61,5 +62,11 @@ class SmokeTestCase extends WebTestCase
     protected function rollbackTransaction(): void
     {
         $this->getEntityManager()->rollback();
+    }
+
+    protected function getMessengerTransport(string $transportName): InMemoryTransport
+    {
+        /** @var InMemoryTransport */
+        return self::getContainer()->get(sprintf('messenger.transport.%s', $transportName));
     }
 }
