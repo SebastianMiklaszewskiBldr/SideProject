@@ -13,6 +13,8 @@ services:
       - ./api/warehouse:/var/www/html
     depends_on:
       - warehouse_db
+    command:
+      - /var/www/html/scripts/setup.sh
 
   warehouse_db:
     env_file:

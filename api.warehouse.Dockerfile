@@ -24,3 +24,5 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' 
 
 COPY ./config/xdebug.ini.example /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY ./config/error_reporting.ini.example /usr/local/etc/php/conf.d/error_reporting.ini
+
+ENTRYPOINT php-fpm
