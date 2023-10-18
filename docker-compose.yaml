@@ -73,3 +73,5 @@ services:
       args:
         - IMAGE_TAG=${RABBITMQ_IMAGE_TAG}
     container_name: shop_rabbitmq
+    ports:
+      - ${RABBITMQ_MANAGEMENT_PORT}:15672

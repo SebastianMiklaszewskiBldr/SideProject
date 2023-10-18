@@ -1,4 +1,5 @@
 parameters:
+  app.messenger.events.dsn: '%env(MESSENGER_EVENTS_TRANSPORT_DSN)%'
 
 services:
   _defaults:

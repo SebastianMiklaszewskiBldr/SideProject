@@ -13,6 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "*",
         "doctrine/orm": "*",
         "ramsey/uuid": "*",
+        "symfony/amqp-messenger": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/doctrine-messenger": "6.3.*",
         "symfony/dotenv": "6.3.*",
