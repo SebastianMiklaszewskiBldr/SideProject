@@ -77,3 +77,15 @@ services:
     container_name: shop_rabbitmq
     ports:
       - ${RABBITMQ_MANAGEMENT_PORT}:15672
+
+  nginx:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+      args:
+        - IMAGE_TAG=${NGINX_IMAGE_TAG}
+    ports:
+      - ${NGINX_WAREHOUSE_EXTERNAL_PORT}:${NGINX_WAREHOUSE_INTERNAL_PORT}
+    container_name: shop_nginx
